@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent Call Practice</title>
+<meta name="description" content="Practice delivering difficult news to a parent in a live voice call with an AI role-play partner. Live captions, transcript, feedback, and exportable reflection.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2314213D'/><path d='M30 26c4-3 10-2 12 3l5 11c1 3 0 6-2 8l-5 4c4 8 10 14 18 18l4-5c2-2 5-3 8-2l11 5c5 2 6 8 3 12l-5 6c-4 4-10 5-15 3C45 82 18 55 11 36c-2-5-1-11 3-15z' fill='%23CE1126' transform='translate(4 4) scale(.92)'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens — University of Mississippi palette =====
+   Ole Miss Red #CE1126 · Ole Miss Navy #14213D · Powder Blue #006BA6 · Sky #48C6E4
+   Type: Termina (UM primary; licensed — used automatically if the UM Adobe Fonts kit is present),
+   falling back to Archivo Expanded (free, wide geometric sans) for display and Archivo for text. */
+:root{
+  --navy:#14213D; --navy-2:#1C2D52; --navy-3:#26396A;
+  --red:#CE1126; --red-d:#A30D1E;
+  --powder:#006BA6; --sky:#48C6E4;
+  --paper:#F4F6FA; --card:#FFFFFF; --ink:#14213D; --muted:#46526E; --line:#D3DAE6;
+  --ok:#1E7A46; --warn:#8A5A00;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,61,.06),0 8px 24px rgba(20,33,61,.08);
+  --font-display:"termina","Archivo",system-ui,sans-serif;
+  --font-ui:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-ui);font-size:17px;line-height:1.55;font-style:normal}
+em,i{font-style:normal;font-weight:700}
+a{color:var(--powder)}
+a:hover{color:var(--navy)}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;background:var(--red);color:#fff;padding:10px 16px;border-radius:8px;z-index:100;font-weight:700;text-decoration:none}
+.skip:focus{top:12px;color:#fff}
+.display{font-family:var(--font-display);font-stretch:125%;font-weight:800;letter-spacing:-.01em;line-height:1.08}
+.eyebrow{font-family:var(--font-display);font-stretch:125%;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--powder)}
+
+/* ===== Header ===== */
+.site-head{background:var(--navy);color:#fff;border-bottom:5px solid var(--red)}
+.site-head .wrap{display:flex;align-items:center;gap:16px;padding:14px 20px;max-width:1180px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+.brand svg{flex:none}
+.brand b{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:17px;letter-spacing:.02em;text-transform:uppercase;display:block}
+.brand small{display:block;color:#C9D3E8;font-size:13px}
+.steps{display:flex;gap:4px;margin-left:auto;list-style:none;padding:0;flex-wrap:wrap}
+.steps li{font-size:13px;font-weight:600;color:#AEBAD6;padding:6px 10px;border-radius:999px;display:flex;align-items:center;gap:6px}
+.steps li .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;font-size:11px}
+.steps li[aria-current="step"]{background:#fff;color:var(--navy)}
+.steps li.done{color:#fff}
+
+main{max-width:1180px;margin:0 auto;padding:28px 20px 40px}
+.screen[hidden]{display:none!important}
+h1,h2,h3{margin:0 0 .4em}
+h1.display{font-size:clamp(30px,4.4vw,52px)}
+h2.display{font-size:clamp(22px,2.6vw,30px)}
+p{margin:0 0 1em}
+.lede{font-size:19px;color:var(--muted);max-width:62ch}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px}
+.grid-2{display:grid;grid-template-columns:1.25fr 1fr;gap:22px}
+@media (max-width:880px){.grid-2{grid-template-columns:1fr}}
+.stack>*+*{margin-top:16px}
+
+/* ===== Buttons & fields ===== */
+.btn{appearance:none;border:2px solid var(--navy);background:#fff;color:var(--navy);font:inherit;font-weight:700;padding:11px 20px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;line-height:1.2}
+.btn:hover{background:#E8EDF7}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red-d);border-color:var(--red-d)}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.navy:hover{background:var(--navy-3)}
+.btn.small{padding:7px 14px;font-size:14px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}
+.row.between{justify-content:space-between}
+label{font-weight:700;display:block;margin-bottom:6px}
+.hint{font-size:14px;color:var(--muted);font-weight:400;margin-top:4px}
+input[type=text],input[type=password],input[type=number],select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid #9AA6BF;border-radius:10px;padding:10px 12px}
+textarea{min-height:92px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--powder)}
+fieldset{border:0;padding:0;margin:0}
+legend{font-weight:700;margin-bottom:8px;padding:0}
+.field+.field{margin-top:16px}
+
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{margin:0;font-weight:600;border:1.5px solid #9AA6BF;border-radius:999px;padding:8px 14px;cursor:pointer;background:#fff;display:flex;gap:8px;align-items:center}
+.seg input{accent-color:var(--red)}
+.seg label:has(input:checked){border-color:var(--navy);background:var(--navy);color:#fff}
+.seg label:has(input:focus-visible){outline:3px solid var(--sky);outline-offset:2px}
+
+.notice{border-left:5px solid var(--powder);background:#E9F3FA;padding:12px 16px;border-radius:0 10px 10px 0;font-size:15px}
+.notice.red{border-color:var(--red);background:#FCECEE}
+.notice.warn{border-color:#C98A00;background:#FFF6E0}
+.pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#E6ECF6;color:var(--navy)}
+.pill.red{background:var(--red);color:#fff}
+.pill.ok{background:#DDF0E4;color:#14542F}
+
+/* ===== Hero ===== */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;margin-bottom:28px}
+@media (max-width:880px){.hero{grid-template-columns:1fr}}
+.hero-art{background:var(--navy);border-radius:22px;padding:22px;position:relative;overflow:hidden;min-height:260px;display:grid;place-items:center}
+.hero-art .stripe{position:absolute;inset:auto 0 0 0;height:10px;background:var(--red)}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0 26px;padding:0;list-style:none;counter-reset:how}
+@media (max-width:880px){.how{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.how{grid-template-columns:1fr}}
+.how li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;counter-increment:how;font-size:15px}
+.how li::before{content:counter(how);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;margin-bottom:8px;font-family:var(--font-display);font-stretch:125%}
+.how li b{display:block;margin-bottom:2px}
+
+/* ===== Scenario cards ===== */
+.scen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.scen{position:relative}
+.scen input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.scen .body{border:2px solid var(--line);background:#fff;border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;gap:8px;transition:border-color .15s,box-shadow .15s}
+.scen .body h3{font-size:17px;margin:0}
+.scen .meta{font-size:14px;color:var(--muted)}
+.scen .face{display:flex;gap:10px;align-items:center}
+.scen input:checked+.body{border-color:var(--red);box-shadow:0 0 0 3px rgba(206,17,38,.18)}
+.scen input:focus-visible+.body{outline:3px solid var(--sky);outline-offset:3px}
+.scen .check{margin-left:auto;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:none}
+.scen input:checked+.body .check{background:var(--red);border-color:var(--red)}
+.scen input:checked+.body .check::after{content:"";width:8px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+
+.brief dt{font-weight:700;margin-top:12px}
+.brief dd{margin:2px 0 0}
+
+/* ===== Call stage ===== */
+.call{background:var(--navy);color:#fff;border-radius:22px;overflow:hidden;box-shadow:0 20px 50px rgba(20,33,61,.35)}
+.call-top{display:flex;align-items:center;gap:14px;padding:14px 20px;background:rgba(0,0,0,.18);flex-wrap:wrap}
+.call-top .who b{font-family:var(--font-display);font-stretch:125%;font-size:18px;font-weight:800;display:block}
+.call-top .who span{color:#C9D3E8;font-size:14px}
+.status{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px}
+.status .dot{width:10px;height:10px;border-radius:50%;background:#8E9AB5}
+.status[data-s="live"] .dot{background:#4ADE80}
+.status[data-s="parent"] .dot{background:var(--sky)}
+.status[data-s="connecting"] .dot{background:#FACC15}
+.status[data-s="muted"] .dot,.status[data-s="paused"] .dot{background:var(--red)}
+.timer{margin-left:auto;font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.timer.low{color:#FFB4BE}
+.call-body{display:grid;grid-template-columns:1fr 360px;min-height:520px}
+@media (max-width:960px){.call-body{grid-template-columns:1fr}}
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 20px 16px;gap:16px}
+.portrait-wrap{position:relative;width:min(340px,80vw);aspect-ratio:1}
+.portrait-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.portrait-wrap svg{position:absolute;inset:16%;width:68%;height:68%}
+.you{width:min(520px,100%);display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border-radius:999px;padding:8px 16px}
+.you b{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#C9D3E8}
+.you canvas{flex:1;height:36px;width:100%}
+
+/* Live captions */
+.captions{width:100%;max-width:820px;background:#000;color:#fff;border-radius:12px;padding:14px 18px;min-height:5.2em;line-height:1.45;border:2px solid rgba(255,255,255,.18)}
+.captions .spk{font-weight:800;color:var(--sky);margin-right:6px;text-transform:uppercase;letter-spacing:.06em;font-size:.8em}
+.captions .spk.student{color:#FFD166}
+.captions .interim{color:#C7CEDB}
+.captions .idle{color:#AEB7C9}
+.captions[data-size="m"]{font-size:18px}
+.captions[data-size="l"]{font-size:22px}
+.captions[data-size="xl"]{font-size:28px}
+.captions[data-contrast="yellow"]{background:#000;color:#FFEB3B}
+.captions[data-contrast="light"]{background:#fff;color:#000}
+.captions[data-contrast="light"] .spk{color:var(--powder)}
+.captions[data-contrast="light"] .spk.student{color:var(--red-d)}
+.cap-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:14px}
+.cap-tools select{width:auto;padding:5px 8px;font-size:14px;background:var(--navy-2);color:#fff;border-color:#5B6B90}
+.cap-tools label{display:inline;margin:0 4px 0 0;font-weight:600;color:#C9D3E8}
+
+.side{background:#0F1A31;display:flex;flex-direction:column;min-height:0;border-left:1px solid rgba(255,255,255,.08)}
+.side h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#C9D3E8;padding:14px 16px 0;margin:0}
+.log{flex:1;overflow:auto;padding:10px 16px 16px;max-height:470px;min-height:200px}
+.log .line{margin:0 0 10px;font-size:15px;line-height:1.45}
+.log .line .w{font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;display:block;color:var(--sky)}
+.log .line.student .w{color:#FFD166}
+.log .line.system{color:#AEB7C9;font-size:13px}
+.log .line .ts{color:#8E9AB5;font-weight:600;margin-left:6px}
+.typebox{padding:12px 16px;border-top:1px solid rgba(255,255,255,.1)}
+.typebox label{color:#C9D3E8;font-size:13px;font-weight:600}
+.typebox .row{flex-wrap:nowrap}
+.typebox input{background:var(--navy-2);color:#fff;border-color:#5B6B90}
+.call-controls{display:flex;gap:12px;justify-content:center;padding:16px 20px 20px;flex-wrap:wrap;background:rgba(0,0,0,.18)}
+.ctl{appearance:none;border:0;border-radius:999px;font:inherit;font-weight:700;padding:13px 22px;cursor:pointer;display:inline-flex;gap:10px;align-items:center;background:rgba(255,255,255,.12);color:#fff}
+.ctl:hover{background:rgba(255,255,255,.2)}
+.ctl[aria-pressed="true"]{background:#fff;color:var(--navy)}
+.ctl.end{background:var(--red)}
+.ctl.end:hover{background:var(--red-d)}
+.ctl.go{background:#1E7A46}
+.ctl.go:hover{background:#17633A}
+.ctl[disabled]{opacity:.45;cursor:not-allowed}
+.ctl svg{width:20px;height:20px}
+
+.overlay{position:fixed;inset:0;background:rgba(20,33,61,.82);display:grid;place-items:center;z-index:50;padding:20px}
+.overlay[hidden]{display:none}
+.overlay .card{max-width:520px}
+.breath{width:90px;height:90px;border-radius:50%;background:var(--sky);margin:6px auto 16px;animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.6);opacity:.6}50%{transform:scale(1);opacity:1}}
+
+/* ===== Debrief ===== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-family:var(--font-display);font-stretch:125%;font-size:26px;font-weight:800;color:var(--navy)}
+.stat span{font-size:14px;color:var(--muted)}
+.bar{height:12px;border-radius:999px;background:#E6ECF6;overflow:hidden;display:flex;margin-top:8px}
+.bar i{display:block;height:100%}
+.crit{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+.crit h4{margin:0 0 4px;font-size:16px}
+.crit .score{display:flex;gap:4px;margin:6px 0}
+.crit .score span{width:28px;height:8px;border-radius:4px;background:#E6ECF6}
+.crit .score span.on{background:var(--red)}
+.crit blockquote{margin:8px 0;padding:6px 12px;border-left:4px solid var(--sky);background:#F1F7FB;font-size:15px}
+.rate{display:flex;gap:6px;flex-wrap:wrap}
+.rate label{margin:0;font-weight:600;font-size:14px;border:1.5px solid #9AA6BF;border-radius:8px;padding:6px 10px;cursor:pointer;background:#fff}
+.rate input{accent-color:var(--red)}
+.rate label:has(input:checked){background:var(--navy);color:#fff;border-color:var(--navy)}
+.transcript-print .line{margin:0 0 8px}
+.transcript-print .w{font-weight:800}
+.saved{font-size:13px;color:var(--ok);font-weight:700;opacity:0;transition:opacity .3s}
+
+.history{list-style:none;padding:0;margin:0}
+.history li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;flex-wrap:wrap}
+
+details.card summary{cursor:pointer;font-weight:700}
+details.card[open] summary{margin-bottom:12px}
+
+/* ===== Footer ===== */
+.site-foot{background:var(--navy);color:#C9D3E8;font-size:14px;margin-top:30px;border-top:5px solid var(--red)}
+.site-foot .wrap{max-width:1180px;margin:0 auto;padding:22px 20px}
+.site-foot a{color:var(--sky)}
+.site-foot p{margin:0 0 8px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+@media print{
+  .site-head,.site-foot,.no-print,.call-controls{display:none!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#" id="brandLink" aria-label="Parent Call Practice, home">
+      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#CE1126"/><path d="M30 26c4-3 10-2 12 3l5 11c1 3 0 6-2 8l-5 4c4 8 10 14 18 18l4-5c2-2 5-3 8-2l11 5c5 2 6 8 3 12l-5 6c-4 4-10 5-15 3C45 82 18 55 11 36c-2-5-1-11 3-15z" fill="#fff" transform="translate(4 4) scale(.92)"/></svg>
+      <span><b>Parent Call Practice</b><small>Delivering difficult news · University of Mississippi</small></span>
+    </a>
+    <nav aria-label="Progress">
+      <ol class="steps" id="steps">
+        <li data-step="setup"><span class="n">1</span>Set up</li>
+        <li data-step="scenario"><span class="n">2</span>Scenario</li>
+        <li data-step="prep"><span class="n">3</span>Prepare</li>
+        <li data-step="call"><span class="n">4</span>Call</li>
+        <li data-step="debrief"><span class="n">5</span>Debrief</li>
+      </ol>
+    </nav>
+  </div>
+</header>
+
+<div id="announcer" class="visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+<div id="politeAnnouncer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= 1. SETUP ================= -->
+<section class="screen" id="screen-setup" aria-labelledby="h-setup">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Practice lab · Live voice role-play</p>
+      <h1 class="display" id="h-setup">Practice the call you'll dread making.</h1>
+      <p class="lede">You'll call an AI role-play parent and tell them something hard: a failing grade, a behavior incident, an injury. The parent reacts the way real parents do. Captions run live the whole time, and afterward you get a transcript, feedback, and a reflection to turn in.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 320 220" width="100%" style="max-width:360px">
+        <defs><radialGradient id="hg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#48C6E4" stop-opacity=".35"/><stop offset="1" stop-color="#48C6E4" stop-opacity="0"/></radialGradient></defs>
+        <circle cx="110" cy="108" r="96" fill="url(#hg)"/>
+        <g fill="none" stroke="#48C6E4" stroke-width="3" stroke-linecap="round" opacity=".9">
+          <circle cx="110" cy="108" r="64"/><circle cx="110" cy="108" r="80" stroke-dasharray="4 10" opacity=".6"/>
+        </g>
+        <circle cx="110" cy="108" r="54" fill="#1C2D52"/>
+        <circle cx="110" cy="98" r="20" fill="#C68B59"/>
+        <path d="M84 150c4-20 14-28 26-28s22 8 26 28" fill="#006BA6"/>
+        <path d="M90 96c0-16 10-24 20-24s20 8 20 24c-4-8-10-11-20-11s-16 3-20 11z" fill="#3B2416"/>
+        <g transform="translate(196 50)">
+          <rect x="0" y="0" width="110" height="38" rx="12" fill="#fff"/><path d="M18 38l-6 12 18-12z" fill="#fff"/>
+          <rect x="12" y="12" width="70" height="5" rx="2.5" fill="#14213D"/><rect x="12" y="22" width="48" height="5" rx="2.5" fill="#9AA6BF"/>
+        </g>
+        <g transform="translate(176 120)">
+          <rect x="0" y="0" width="124" height="38" rx="12" fill="#CE1126"/><path d="M106 38l6 12-18-12z" fill="#CE1126"/>
+          <rect x="12" y="12" width="90" height="5" rx="2.5" fill="#fff"/><rect x="12" y="22" width="60" height="5" rx="2.5" fill="#FFC9D0"/>
+        </g>
+        <g fill="#48C6E4"><rect x="196" y="186" width="5" height="14" rx="2"/><rect x="206" y="180" width="5" height="26" rx="2"/><rect x="216" y="184" width="5" height="18" rx="2"/><rect x="226" y="176" width="5" height="34" rx="2"/><rect x="236" y="183" width="5" height="20" rx="2"/><rect x="246" y="188" width="5" height="10" rx="2"/></g>
+      </svg>
+      <div class="stripe"></div>
+    </div>
+  </div>
+
+  <ol class="how" aria-label="How it works">
+    <li><b>Choose a scenario</b>Pick the news, the parent's mood, and how hard the call should be.</li>
+    <li><b>Prepare</b>Plan your opening line, the facts, and the next step you'll offer.</li>
+    <li><b>Make the call</b>Talk out loud, or type. Live captions show both voices. Calls last up to 10 minutes.</li>
+    <li><b>Debrief</b>Review the transcript and feedback, rate yourself, reflect, and export.</li>
+  </ol>
+
+  <div class="grid-2">
+    <div class="card stack">
+      <h2 class="display">Before you start</h2>
+      <div class="field">
+        <label for="studentName">Your name <span class="hint">(appears only on your exported report)</span></label>
+        <input type="text" id="studentName" autocomplete="name">
+      </div>
+      <fieldset class="field">
+        <legend>Call mode</legend>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="mode" value="demo"> Demo (no key, scripted parent)</label>
+          <label><input type="radio" name="mode" value="live"> Live AI parent (Gemini)</label>
+        </div>
+        <p class="hint" id="modeHint"></p>
+      </fieldset>
+      <div id="liveSettings" class="stack">
+        <div class="field">
+          <label for="apiKey">Gemini API key</label>
+          <input type="password" id="apiKey" autocomplete="off" spellcheck="false" placeholder="Paste a key from Google AI Studio">
+          <div class="row" style="margin-top:8px">
+            <label style="margin:0;font-weight:600"><input type="checkbox" id="rememberKey"> Remember on this device</label>
+            <button class="btn small" type="button" id="showKey" aria-pressed="false">Show</button>
+            <button class="btn small" type="button" id="testKey">Test connection</button>
+            <span id="keyStatus" role="status" class="hint"></span>
+          </div>
+          <p class="hint">Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. The key stays in this browser and goes only to Google.</p>
+        </div>
+        <div class="notice warn"><b>Free tier = test only.</b> Google may use free-tier conversations to improve its products. Use invented scenarios, never real student or family details. Switch to a paid key before class use.</div>
+        <details>
+          <summary style="cursor:pointer;font-weight:700">Advanced: model settings</summary>
+          <div class="field" style="margin-top:12px">
+            <label for="liveModel">Live voice model</label>
+            <input type="text" id="liveModel" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="fbModel">Feedback model (text)</label>
+            <input type="text" id="fbModel" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="limitMin">Call length limit (minutes)</label>
+            <input type="number" id="limitMin" min="2" max="15" step="1">
+          </div>
+        </details>
+      </div>
+      <div class="row end"><button class="btn primary" type="button" id="toScenario">Choose a scenario →</button></div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h2 class="display" style="font-size:20px">What to expect</h2>
+        <ul style="padding-left:20px;margin:0">
+          <li>The parent is an AI. It's a practice partner, not a real person, and it can get things wrong.</li>
+          <li>Live captions and a running transcript stay on screen. You can type any line instead of saying it.</li>
+          <li>Need a moment? <b>Take a break</b> pauses the call. You can end it at any time.</li>
+          <li>Nothing is uploaded except the call audio, which goes to Google in Live mode. Your report saves only when you export it.</li>
+        </ul>
+      </div>
+      <div class="card" id="historyCard" hidden>
+        <h2 class="display" style="font-size:20px">Your past calls (this browser)</h2>
+        <ul class="history" id="historyList"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. SCENARIO ================= -->
+<section class="screen" id="screen-scenario" aria-labelledby="h-scen" hidden>
+  <p class="eyebrow">Step 2</p>
+  <h1 class="display" id="h-scen">Choose the conversation</h1>
+  <p class="lede">Every scenario is invented. Pick one, then decide how the parent tends to react and how hard the call should be.</p>
+
+  <fieldset>
+    <legend class="visually-hidden">Scenario</legend>
+    <div class="scen-grid" id="scenGrid"></div>
+  </fieldset>
+
+  <div class="grid-2" style="margin-top:22px">
+    <div class="card stack">
+      <fieldset>
+        <legend>How does the parent tend to react?</legend>
+        <div class="seg" id="stanceSeg"></div>
+        <p class="hint" id="stanceHint"></p>
+      </fieldset>
+      <fieldset>
+        <legend>Difficulty</legend>
+        <div class="seg" id="diffSeg"></div>
+        <p class="hint" id="diffHint"></p>
+      </fieldset>
+      <div class="field">
+        <label for="voice">Parent's voice</label>
+        <select id="voice"></select>
+        <p class="hint">Live mode uses Gemini voices. Demo mode uses your device's built-in voice.</p>
+      </div>
+    </div>
+    <details class="card" id="customCard">
+      <summary>For instructors: write your own scenario</summary>
+      <form id="customForm" class="stack">
+        <div class="field"><label for="c-title">Scenario title</label><input type="text" id="c-title" required></div>
+        <div class="row" style="flex-wrap:nowrap">
+          <div style="flex:1"><label for="c-parent">Parent's name</label><input type="text" id="c-parent" required></div>
+          <div style="flex:1"><label for="c-rel">Relationship</label><input type="text" id="c-rel" placeholder="mother, father, grandmother…" required></div>
+        </div>
+        <div class="row" style="flex-wrap:nowrap">
+          <div style="flex:1"><label for="c-child">Child's name</label><input type="text" id="c-child" required></div>
+          <div style="flex:1"><label for="c-grade">Grade / age</label><input type="text" id="c-grade" placeholder="3rd grade" required></div>
+        </div>
+        <div class="field"><label for="c-role">The student caller's role</label><input type="text" id="c-role" placeholder="student teacher, classroom teacher, counselor…" required></div>
+        <div class="field"><label for="c-news">The news to deliver (the caller knows this)</label><textarea id="c-news" required></textarea></div>
+        <div class="field"><label for="c-evidence">Evidence and details the caller can share</label><textarea id="c-evidence"></textarea></div>
+        <div class="field"><label for="c-back">Parent's private backstory (only the AI knows this)</label><textarea id="c-back" placeholder="Work, worries, history with the school, what they'll push back on…"></textarea></div>
+        <div class="field"><label for="c-goal">Goal for the call</label><input type="text" id="c-goal" placeholder="Parent understands the news and agrees to a meeting"></div>
+        <div class="row between">
+          <div class="row">
+            <button class="btn small" type="button" id="exportScen">Export my scenarios</button>
+            <label class="btn small" for="importScen" style="margin:0">Import scenarios</label>
+            <input type="file" id="importScen" accept="application/json,.json" class="visually-hidden">
+          </div>
+          <button class="btn navy" type="submit">Save scenario</button>
+        </div>
+        <p class="hint">Saved in this browser. Export to a .json file and send it to students; they import it here.</p>
+      </form>
+    </details>
+  </div>
+  <div class="row between" style="margin-top:22px">
+    <button class="btn" type="button" data-go="setup">← Back</button>
+    <button class="btn primary" type="button" id="toPrep">Prepare for the call →</button>
+  </div>
+</section>
+
+<!-- ================= 3. PREP ================= -->
+<section class="screen" id="screen-prep" aria-labelledby="h-prep" hidden>
+  <p class="eyebrow">Step 3</p>
+  <h1 class="display" id="h-prep">Prepare before you dial</h1>
+  <div class="grid-2">
+    <div class="card">
+      <h2 class="display" style="font-size:22px" id="briefTitle"></h2>
+      <dl class="brief" id="briefList"></dl>
+    </div>
+    <div class="card stack">
+      <h2 class="display" style="font-size:22px">Your plan <span class="saved" id="savedFlash" aria-live="polite"></span></h2>
+      <p class="hint" style="margin-top:-6px">Optional. Your plan stays visible during the call and goes into your report.</p>
+      <div class="field"><label for="p-open">My opening (how I'll introduce myself and signal that something serious is coming)</label><textarea id="p-open"></textarea></div>
+      <div class="field"><label for="p-facts">The news in one or two plain sentences</label><textarea id="p-facts"></textarea></div>
+      <div class="field"><label for="p-next">The next step I'll offer</label><textarea id="p-next"></textarea></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:22px">
+    <h2 class="display" style="font-size:20px">Microphone check</h2>
+    <div class="row">
+      <button class="btn" type="button" id="micTest">Test my microphone</button>
+      <canvas id="micTestMeter" width="300" height="24" style="width:300px;max-width:100%;height:24px;background:#E6ECF6;border-radius:999px" aria-hidden="true"></canvas>
+      <span id="micTestStatus" role="status" class="hint"></span>
+    </div>
+    <p class="hint">Wear headphones if you can. Otherwise the parent's voice can come back through your mic.</p>
+  </div>
+  <div class="row between" style="margin-top:22px">
+    <button class="btn" type="button" data-go="scenario">← Back</button>
+    <button class="btn primary" type="button" id="startCall">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+      Start the call
+    </button>
+  </div>
+</section>
+
+<!-- ================= 4. CALL ================= -->
+<section class="screen" id="screen-call" aria-labelledby="h-call" hidden>
+  <h1 class="visually-hidden" id="h-call">Live call</h1>
+  <div class="call">
+    <div class="call-top">
+      <div class="who"><b id="callName">Parent</b><span id="callSub"></span></div>
+      <span class="status" id="callStatus" data-s="idle" role="status"><span class="dot" aria-hidden="true"></span><span id="callStatusText">Ready</span></span>
+      <div class="timer" id="timer" aria-label="Time remaining">10:00</div>
+    </div>
+    <div class="call-body">
+      <div class="stage">
+        <div class="portrait-wrap" aria-hidden="true">
+          <canvas id="ring" width="680" height="680"></canvas>
+          <svg id="portrait" viewBox="0 0 200 200"></svg>
+        </div>
+        <div class="you" aria-hidden="true"><b>You</b><canvas id="youMeter" width="800" height="72"></canvas></div>
+        <div class="captions" id="captions" data-size="l" data-contrast="dark" aria-hidden="true"><span class="idle">Live captions will appear here.</span></div>
+        <div class="cap-tools no-print">
+          <span><label for="capSize">Caption size</label><select id="capSize"><option value="m">Medium</option><option value="l">Large</option><option value="xl">Extra large</option></select></span>
+          <span><label for="capColor">Colors</label><select id="capColor"><option value="dark">White on black</option><option value="yellow">Yellow on black</option><option value="light">Black on white</option></select></span>
+        </div>
+      </div>
+      <aside class="side" aria-labelledby="h-log">
+        <h3 id="h-log">Transcript</h3>
+        <div class="log" id="log" role="log" aria-live="polite" aria-relevant="additions" tabindex="0" aria-label="Call transcript. Finished lines are announced."></div>
+        <form class="typebox" id="typeForm">
+          <label for="typeInput">Type instead of speaking</label>
+          <div class="row"><input type="text" id="typeInput" autocomplete="off"><button class="btn small" type="submit">Send</button></div>
+        </form>
+        <details class="typebox" id="planPeek">
+          <summary style="cursor:pointer;color:#C9D3E8;font-size:14px;font-weight:700">My plan</summary>
+          <div id="planPeekBody" style="font-size:14px;color:#E4E9F3;margin-top:8px"></div>
+        </details>
+      </aside>
+    </div>
+    <div class="call-controls">
+      <button class="ctl" type="button" id="muteBtn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V22h2v-3.1A7 7 0 0 0 19 12z"/></svg>
+        <span>Mute</span>
+      </button>
+      <button class="ctl" type="button" id="breakBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
+        Take a break
+      </button>
+      <button class="ctl end" type="button" id="endBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 9c-1.6 0-3.1.3-4.6.7v3.1c0 .4-.2.7-.6.9-1 .5-1.9 1.1-2.7 1.8-.2.2-.4.3-.7.3s-.5-.1-.7-.3L.3 13.1A1 1 0 0 1 0 12.4c0-.3.1-.5.3-.7C3.3 8.8 7.4 7 12 7s8.7 1.8 11.7 4.7c.2.2.3.4.3.7s-.1.5-.3.7l-2.4 2.4c-.2.2-.4.3-.7.3s-.5-.1-.7-.3c-.8-.7-1.7-1.3-2.7-1.8-.3-.2-.6-.5-.6-.9V9.7C15.1 9.3 13.6 9 12 9z"/></svg>
+        End call
+      </button>
+    </div>
+  </div>
+  <p class="hint no-print" style="margin-top:12px">The parent is an AI role-play partner. The call ends on its own when the timer reaches zero. Captions are machine-generated and may contain errors.</p>
+</section>
+
+<!-- ================= 5. DEBRIEF ================= -->
+<section class="screen" id="screen-debrief" aria-labelledby="h-debrief" hidden>
+  <p class="eyebrow">Step 5</p>
+  <h1 class="display" id="h-debrief">Debrief</h1>
+  <p class="lede" id="debriefLede"></p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="grid-2" style="margin-top:22px">
+    <div class="stack">
+      <div class="card">
+        <div class="row between">
+          <h2 class="display" style="font-size:22px;margin:0">Feedback</h2>
+          <button class="btn small" type="button" id="fbBtn">Get feedback</button>
+        </div>
+        <p class="hint" id="fbNote"></p>
+        <div id="fbBody" class="stack" aria-live="polite"></div>
+      </div>
+      <div class="card">
+        <h2 class="display" style="font-size:22px">Rate yourself</h2>
+        <p class="hint">1 Beginning · 2 Developing · 3 Proficient · 4 Exemplary</p>
+        <div id="ratings" class="stack"></div>
+      </div>
+      <div class="card">
+        <h2 class="display" style="font-size:22px">Reflect <span class="saved" id="savedFlash2" aria-live="polite"></span></h2>
+        <div id="reflections" class="stack"></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h2 class="display" style="font-size:22px">Transcript</h2>
+        <div id="dTranscript" class="transcript-print" style="max-height:520px;overflow:auto;font-size:15px" tabindex="0" aria-label="Call transcript"></div>
+      </div>
+      <div class="card stack">
+        <h2 class="display" style="font-size:22px">Export</h2>
+        <p class="hint" style="margin-top:-6px">Your report includes the scenario, your plan, the transcript, the feedback, your ratings, and your reflections.</p>
+        <div class="row">
+          <button class="btn primary" type="button" id="dlHtml">Download report (HTML)</button>
+          <button class="btn" type="button" id="dlPdf">Save as PDF</button>
+          <button class="btn" type="button" id="copyTxt">Copy text</button>
+          <button class="btn" type="button" id="dlVtt">Transcript (.txt)</button>
+        </div>
+        <span id="exportStatus" role="status" class="hint"></span>
+      </div>
+    </div>
+  </div>
+  <div class="row between" style="margin-top:22px">
+    <button class="btn" type="button" data-go="scenario">Try another call</button>
+    <button class="btn" type="button" id="resetAll">Clear all my data</button>
+  </div>
+</section>
+</main>
+
+<div class="overlay" id="breakOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="h-break">
+  <div class="card" style="text-align:center">
+    <h2 class="display" id="h-break" style="font-size:24px">Call paused</h2>
+    <div class="breath" aria-hidden="true"></div>
+    <p>Your mic is off and the parent is on hold. Breathe in as the circle grows and out as it shrinks. Glance at your plan if it helps.</p>
+    <div class="row" style="justify-content:center">
+      <button class="btn primary" type="button" id="resumeBtn">Resume the call</button>
+      <button class="btn" type="button" id="breakEndBtn">End the call</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p><b style="color:#fff">Parent Call Practice</b>: a teacher-preparation activity by Marc Watkins, University of Mississippi. The feedback rubric is adapted from the SPIKES protocol for delivering bad news (Baile et al., 2000, <span>The Oncologist</span>), reworked for school–family conversations. SPIKES's authors are not responsible for this adaptation.</p>
+    <p>Built with Claude (AI-assisted; content reviewed by a human educator). The parent is an AI role-play voice powered by Google Gemini in Live mode. AI feedback can be wrong. Treat it as one perspective.</p>
+    <p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · <a href="https://marcwatkins.substack.com" target="_blank" rel="noopener">Substack</a> · No accounts · no analytics · your work stays in this browser.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= Helpers ================= */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+function escHTML(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function slugify(s,f){const o=String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');return o||(f||'student');}
+function fmt(sec){sec=Math.max(0,Math.round(sec));return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');}
+function announce(msg,polite){const el=polite?$('#politeAnnouncer'):$('#announcer');el.textContent='';setTimeout(()=>{el.textContent=msg;},50);}
+function downloadBlob(content,type,filename){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);}
+function copyText(text,ok,fail){function fb(){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();let r=false;try{r=document.execCommand('copy');}catch(e){}ta.remove();r?ok&&ok():fail&&fail();}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>ok&&ok(),fb);}else fb();}
+function printReportWindow(html){const w=window.open('','_blank');if(!w){alert('Pop-up blocked. Allow pop-ups to save as PDF.');return;}w.document.write(html);w.document.close();setTimeout(()=>w.print(),400);}
+
+/* ================= Content ================= */
+const STANCES = {
+  calm:{label:'Calm but worried',hint:'Listens and asks practical questions, but is clearly worried.',prompt:'You are calm but worried. You listen, ask practical questions, and want to understand. Your worry shows in your voice.'},
+  defensive:{label:'Defensive',hint:'Questions your judgment and points at the school.',prompt:'You are defensive. You question the caller\'s judgment, ask why nobody told you sooner, and suggest the school or other kids are the real problem.'},
+  angry:{label:'Angry',hint:'Raises their voice, interrupts, threatens to call the principal. No profanity.',prompt:'You are angry. You raise your voice, interrupt, and say you want to talk to the principal. Never use profanity or threats of violence.'},
+  overwhelmed:{label:'Overwhelmed',hint:'Gets emotional, goes quiet, needs reassurance.',prompt:'You are overwhelmed. You become emotional, sometimes go quiet or tearful, blame yourself, and need reassurance and clear next steps.'},
+  denial:{label:'In denial',hint:'Minimizes the news and insists their child is fine at home.',prompt:'You are in denial. You minimize the news, insist your child is fine at home, and suggest the test or the teacher must be wrong.'}
+};
+const DIFFS = {
+  supportive:{label:'Supportive',hint:'The parent softens quickly once you show empathy.',prompt:'Soften fairly quickly once the caller shows real empathy and explains clearly.'},
+  standard:{label:'Standard',hint:'A realistic mix of pushback and openness.',prompt:'Push back realistically. Soften gradually as the caller shows empathy, gives specific evidence, and offers a concrete plan.'},
+  challenging:{label:'Challenging',hint:'Interrupts often. Softens only with empathy, evidence, and a plan.',prompt:'Be hard to reach. Interrupt often, raise objections, and soften only after the caller shows empathy, gives specific evidence, AND offers a concrete plan.'}
+};
+const VOICES = ['Kore','Aoede','Leda','Zephyr','Puck','Charon','Fenrir','Orus'];
+
+const BUILTIN = [
+  {id:'reading',title:'Reading far below grade level',parent:'Dana Whitfield',rel:'mother',child:'Marcus',grade:'3rd grade',role:'student teacher in Marcus\'s 3rd-grade class',
+   news:'Marcus is reading at a 1st-grade level. The team is recommending daily small-group reading intervention, and retention may be discussed at the spring meeting if he doesn\'t make progress.',
+   evidence:'Two benchmark assessments (September and January) both show 1st-grade level. He avoids reading aloud and has started acting out during reading block. Intervention would be 30 minutes a day with the reading specialist.',
+   back:'Dana works double shifts as a nurse. Marcus\'s report cards have said "progressing" and nobody flagged this. She was held back herself as a kid and remembers it as humiliating. She reads with Marcus at bedtime when she can and thinks he does fine.',
+   goal:'Dana understands the concern and agrees to a meeting with the reading specialist.',
+   avatar:{skin:'#8D5A3B',hair:'#1C120C',style:'bun',shirt:'#006BA6'},
+   demo:['Hello? This is Dana.','Okay… is Marcus alright? Is something wrong?','First grade? That doesn\'t make sense. His report card said he was progressing. Why is this the first I\'m hearing about it?','I read with him at night. He seems fine to me. Are you sure the test isn\'t the problem?','Held back… I was held back. I don\'t want that for him. What does this intervention even look like?','Okay. I\'m still upset nobody said anything sooner. But I can come in. When can we meet?','Alright. Thank you for calling me, I guess. I need some time to think about all this.']},
+  {id:'behavior',title:'Physical incident and suspension',parent:'Luis Ortega',rel:'father',child:'Sofia',grade:'7th grade',role:'Sofia\'s homeroom teacher',
+   news:'Sofia pushed another student into a locker during class change. The other student has a bruised shoulder. The principal has given Sofia a two-day out-of-school suspension starting tomorrow.',
+   evidence:'Two adults saw it. Sofia said the other student had been calling her names for weeks. The counselor met with Sofia today. There will be a re-entry meeting when she returns.',
+   back:'Luis is a single dad who runs a small landscaping business. Sofia told him months ago that a girl was bullying her, and he emailed the school once and never heard back. He is proud of Sofia for standing up for herself and worried about who will watch her for two days.',
+   goal:'Luis understands the consequence and agrees to the re-entry meeting, and his bullying concern is heard.',
+   avatar:{skin:'#C68B59',hair:'#2B1B10',style:'short',shirt:'#3E6B48'},
+   demo:['Ortega Landscaping, this is Luis.','Sofia? What happened? Is she hurt?','Suspended? For two days? That girl has been picking on her for months. I emailed the school about it. Nobody ever called me back.','So my daughter gets punished and the bully gets nothing? How is that fair?','And who\'s supposed to watch her? I\'m working on job sites all day.','Okay. If somebody is actually going to look into the bullying, I\'ll come to the meeting.','Alright. Thanks for being straight with me. I\'ll talk to her tonight.']},
+  {id:'sped',title:'Recommending a special education evaluation',parent:'Tanya Brooks',rel:'mother',child:'Jaylen',grade:'1st grade',role:'Jaylen\'s 1st-grade teacher',
+   news:'The student support team wants to request Jaylen\'s parents\' consent for a full special education evaluation because of ongoing difficulty with attention, letter sounds, and following multi-step directions.',
+   evidence:'Six weeks of classroom interventions with progress-monitoring data showing little change. He needs one-on-one redirection many times per lesson. He is kind, creative, and loves building with blocks.',
+   back:'Tanya\'s older brother was put in special education in the 1990s and was teased and tracked into low classes. She fears a label will follow Jaylen forever. Her pediatrician said boys mature later. She is a church secretary and very involved at school.',
+   goal:'Tanya understands what an evaluation is (and isn\'t), and her fears are acknowledged. She may or may not consent today.',
+   avatar:{skin:'#5C3A24',hair:'#120B07',style:'curly',shirt:'#CE1126'},
+   demo:['Hi, this is Tanya Brooks.','Oh. Is Jaylen in trouble?','Special education? He\'s six. My pediatrician said boys just mature later.','I watched what happened to my brother. They put a label on him and it followed him forever. I won\'t do that to my son.','So an evaluation doesn\'t mean he automatically gets placed somewhere? I get to say what happens?','Okay. I\'m not saying yes yet. But I\'ll come in and look at what you\'ve seen.','Thank you for telling me the good things about him too. That matters.']},
+  {id:'integrity',title:'Academic integrity: AI-written essay',parent:'Robert Chen',rel:'father',child:'Emily',grade:'11th grade',role:'Emily\'s English teacher',
+   news:'Emily submitted an essay that she has admitted was mostly written by an AI chatbot. Under school policy she receives a zero on the assignment and a referral to the assistant principal, with an option to complete a revision for partial credit.',
+   evidence:'The essay referenced events not in the novel. In a conference, Emily acknowledged using a chatbot to write most of it. This is her first integrity issue. The revision would be due in one week.',
+   back:'Robert is an engineer who expects top grades. Emily is applying to selective colleges and is stressed and sleeping little. Robert uses AI at work every day and thinks schools are behind the times. He worries this will go on her college record.',
+   goal:'Robert understands the policy and the path forward (revision), and his college-record worry is answered honestly.',
+   avatar:{skin:'#E1B892',hair:'#141414',style:'short',shirt:'#14213D'},
+   demo:['Robert Chen.','Is everything okay with Emily?','A zero? Everyone uses these tools. I use AI at work every single day.','Will this go on her college record? She\'s applying to very competitive schools.','So she can revise it for partial credit? What exactly does she have to do?','Okay. I don\'t love it, but I understand. I\'ll talk to her about the revision.','Thank you. She\'s been under a lot of pressure. I\'ll keep an eye on it.']},
+  {id:'injury',title:'Injury at recess, late notification',parent:'Keisha Moore',rel:'mother',child:'Andre',grade:'2nd grade',role:'Andre\'s 2nd-grade teacher',
+   news:'Andre fell from the climbing structure at morning recess. He said he was fine and the nurse gave him ice, but by early afternoon his wrist was swollen and the nurse thinks it may be broken. Andre should be seen by a doctor today. The school did not call until now, about three hours after the fall.',
+   evidence:'The fall happened around 10:15. The nurse checked him and he returned to class. Swelling increased after lunch. An incident report has been started. Andre is resting in the nurse\'s office now.',
+   back:'Keisha is a paralegal and her office is 40 minutes away. Andre is her only child. She is furious it took three hours to call. She will ask who was supervising and whether she needs to file something.',
+   goal:'Keisha gets clear, honest facts, an apology for the delay, and a plan for pickup and follow-up.',
+   avatar:{skin:'#7A4A2E',hair:'#1A0F09',style:'long',shirt:'#48C6E4'},
+   demo:['This is Keisha Moore.','What happened? Is Andre okay?','His wrist might be broken and you\'re calling me now? When did this happen?','Three hours. Three hours! Who was watching the kids? Why didn\'t anyone call me right away?','I want a copy of that incident report. And I want to know what\'s going to change.','Okay. I\'m leaving work now. Tell him Mommy\'s on the way.','Thank you for being honest. I\'m still upset, but I appreciate that.']}
+];
+
+const RUBRIC = [
+  {id:'open',name:'Opening and warning shot',desc:'Introduces self and role, checks it is a good time, signals that serious news is coming.'},
+  {id:'clear',name:'Clear, plain-language news',desc:'States the news directly in plain words, without jargon or burying it.'},
+  {id:'empathy',name:'Listening and empathy',desc:'Pauses, acknowledges emotion, lets the parent speak, avoids defensiveness.'},
+  {id:'evidence',name:'Specific evidence',desc:'Backs the news with concrete, accurate details and answers questions honestly.'},
+  {id:'plan',name:'Partnership and next steps',desc:'Offers a concrete plan, invites the parent\'s input, and closes with clear follow-up.'}
+];
+const REFLECT = [
+  {id:'hard',q:'What was the hardest moment in the call? What did you do, and how did the parent respond?'},
+  {id:'news',q:'Copy the sentence where you delivered the news. Was it clear? How would you rewrite it?'},
+  {id:'redo',q:'If you could restart the call, what would you change about your first 30 seconds?'},
+  {id:'follow',q:'Write the two-sentence follow-up email you would send this parent after the call.'}
+];
+
+/* ================= State ================= */
+const LS_KEY='parent-call-practice-v1', KEY_KEY='parent-call-practice-apikey';
+function seed(){return {name:'',mode:'demo',liveModel:'gemini-3.8-live',fbModel:'gemini-3.5-flash-lite',limitMin:10,
+  scenarioId:'reading',stance:'defensive',difficulty:'standard',voice:'Kore',prep:{open:'',facts:'',next:''},
+  custom:[],sessions:[],currentId:null,caption:{size:'l',contrast:'dark'},rememberKey:false};}
+function load(){try{const raw=localStorage.getItem(LS_KEY);if(!raw)return seed();const s=JSON.parse(raw);const d=seed();
+  const out=Object.assign(d,s);out.prep=Object.assign(seed().prep,s.prep||{});out.caption=Object.assign(seed().caption,s.caption||{});
+  if(!Array.isArray(out.custom))out.custom=[];if(!Array.isArray(out.sessions))out.sessions=[];return out;}catch(e){return seed();}}
+let state=load();
+let apiKey='';
+try{apiKey=localStorage.getItem(KEY_KEY)||'';}catch(e){}
+function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(state));return true;}catch(e){return false;}}
+function flash(el){if(!el)return;el.textContent='Saved ✓';el.style.opacity='1';clearTimeout(el._t);el._t=setTimeout(()=>{el.style.opacity='0';},1200);}
+function allScenarios(){return BUILTIN.concat(state.custom);}
+function scenario(){return allScenarios().find(s=>s.id===state.scenarioId)||BUILTIN[0];}
+function currentSession(){return state.sessions.find(s=>s.id===state.currentId)||null;}
+
+/* ================= Navigation ================= */
+const ORDER=['setup','scenario','prep','call','debrief'];
+function go(screen){
+  if(callActive&&screen!=='call')return;
+  ORDER.forEach(id=>{$('#screen-'+id).hidden=(id!==screen);});
+  const idx=ORDER.indexOf(screen);
+  $$('#steps li').forEach((li,i)=>{li.removeAttribute('aria-current');li.classList.toggle('done',i<idx);if(i===idx)li.setAttribute('aria-current','step');});
+  window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const h=$('#screen-'+screen+' h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}
+  if(screen==='scenario')renderScenarios();
+  if(screen==='prep')renderPrep();
+  if(screen==='debrief')renderDebrief();
+  if(screen==='setup')renderSetup();
+}
+$$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+$('#brandLink').addEventListener('click',e=>{e.preventDefault();if(!callActive)go('setup');});
+
+/* ================= Setup screen ================= */
+function renderSetup(){
+  $('#studentName').value=state.name;
+  $$('input[name=mode]').forEach(r=>r.checked=(r.value===state.mode));
+  $('#apiKey').value=apiKey;$('#rememberKey').checked=!!state.rememberKey;
+  $('#liveModel').value=state.liveModel;$('#fbModel').value=state.fbModel;$('#limitMin').value=state.limitMin;
+  updateModeUI();renderHistory();
+}
+function updateModeUI(){
+  const live=state.mode==='live';
+  $('#liveSettings').hidden=!live;
+  $('#modeHint').textContent=live?'A real-time AI parent who reacts to what you say. Needs a Gemini API key (the free tier works for testing).'
+    :'Practice the flow with no key: a scripted parent speaks fixed lines in your device\'s voice. Your speech is captioned by the browser (best in Chrome or Edge). Feedback is calculated on this device.';
+}
+$('#studentName').addEventListener('input',e=>{state.name=e.target.value;save();});
+$$('input[name=mode]').forEach(r=>r.addEventListener('change',()=>{state.mode=r.value;save();updateModeUI();}));
+$('#apiKey').addEventListener('input',e=>{apiKey=e.target.value.trim();persistKey();});
+$('#rememberKey').addEventListener('change',e=>{state.rememberKey=e.target.checked;save();persistKey();});
+function persistKey(){try{if(state.rememberKey&&apiKey)localStorage.setItem(KEY_KEY,apiKey);else localStorage.removeItem(KEY_KEY);}catch(e){}}
+$('#showKey').addEventListener('click',e=>{const k=$('#apiKey');const show=k.type==='password';k.type=show?'text':'password';e.currentTarget.setAttribute('aria-pressed',String(show));e.currentTarget.textContent=show?'Hide':'Show';});
+$('#liveModel').addEventListener('change',e=>{state.liveModel=e.target.value.trim()||'gemini-3.8-live';save();});
+$('#fbModel').addEventListener('change',e=>{state.fbModel=e.target.value.trim()||'gemini-3.5-flash-lite';save();});
+$('#limitMin').addEventListener('change',e=>{let v=parseInt(e.target.value,10);if(!(v>=2&&v<=15))v=10;state.limitMin=v;e.target.value=v;save();});
+$('#testKey').addEventListener('click',async()=>{
+  const st=$('#keyStatus');if(!apiKey){st.textContent='Paste a key first.';return;}
+  st.textContent='Checking…';
+  try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(state.liveModel),{headers:{'x-goog-api-key':apiKey}});
+    if(r.ok){st.textContent='✓ Key works and '+state.liveModel+' is available.';}
+    else{const j=await r.json().catch(()=>({}));st.textContent='✗ '+(j.error&&j.error.message?j.error.message:('HTTP '+r.status));}
+  }catch(e){st.textContent='✗ Could not reach Google: '+e.message;}
+});
+$('#toScenario').addEventListener('click',()=>{
+  if(state.mode==='live'&&!apiKey){announce('Paste a Gemini API key, or switch to Demo mode.');$('#apiKey').focus();$('#keyStatus').textContent='A key is needed for Live mode.';return;}
+  go('scenario');
+});
+function renderHistory(){
+  const list=$('#historyList');const done=state.sessions.filter(s=>s.transcript&&s.transcript.length);
+  $('#historyCard').hidden=!done.length;list.innerHTML='';
+  done.slice().reverse().slice(0,8).forEach(s=>{
+    const li=document.createElement('li');
+    const span=document.createElement('span');span.textContent=s.scenarioTitle+' · '+new Date(s.startedAt).toLocaleDateString()+' · '+fmt(s.durationSec||0);
+    const b=document.createElement('button');b.className='btn small';b.type='button';b.textContent='Open debrief';
+    b.addEventListener('click',()=>{state.currentId=s.id;save();go('debrief');});
+    li.append(span,b);list.appendChild(li);
+  });
+}
+
+/* ================= Avatar ================= */
+function avatarSVG(av,size){
+  av=av||{skin:'#C68B59',hair:'#2B1B10',style:'short',shirt:'#006BA6'};
+  const hair={
+    short:'<path d="M58 84c0-30 18-46 42-46s42 16 42 46c-6-14-20-20-42-20s-36 6-42 20z" fill="'+av.hair+'"/>',
+    long:'<path d="M52 92c0-36 20-54 48-54s48 18 48 54v52c-8-6-12-14-12-26V96c-8-14-20-20-36-20s-28 6-36 20v22c0 12-4 20-12 26z" fill="'+av.hair+'"/>',
+    bun:'<circle cx="100" cy="34" r="16" fill="'+av.hair+'"/><path d="M56 88c0-32 18-48 44-48s44 16 44 48c-6-16-22-22-44-22s-38 6-44 22z" fill="'+av.hair+'"/>',
+    curly:'<g fill="'+av.hair+'"><circle cx="70" cy="66" r="18"/><circle cx="90" cy="52" r="20"/><circle cx="112" cy="52" r="20"/><circle cx="131" cy="66" r="18"/><circle cx="62" cy="86" r="13"/><circle cx="139" cy="86" r="13"/></g>'
+  }[av.style]||'';
+  return '<circle cx="100" cy="100" r="98" fill="#1C2D52"/>'+
+    '<clipPath id="pc'+size+'"><circle cx="100" cy="100" r="98"/></clipPath><g clip-path="url(#pc'+size+')">'+
+    (av.style==='long'?hair:'')+
+    '<path d="M38 210c4-40 30-58 62-58s58 18 62 58z" fill="'+av.shirt+'"/>'+
+    '<rect x="88" y="128" width="24" height="30" rx="10" fill="'+av.skin+'"/>'+
+    '<ellipse cx="100" cy="98" rx="38" ry="44" fill="'+av.skin+'"/>'+
+    (av.style!=='long'?hair:'')+
+    '<g class="eyes"><ellipse cx="86" cy="98" rx="4" ry="4.6" fill="#14213D"/><ellipse cx="114" cy="98" rx="4" ry="4.6" fill="#14213D"/></g>'+
+    '<path d="M78 86q8-5 16-1M106 85q8-4 16 1" stroke="#14213D" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>'+
+    '<ellipse class="mouth" cx="100" cy="122" rx="10" ry="2.5" fill="#5A1A1A"/>'+
+    '</g>';
+}
+
+/* ================= Scenario screen ================= */
+function renderScenarios(){
+  const grid=$('#scenGrid');grid.innerHTML='';
+  allScenarios().forEach((s,i)=>{
+    const lab=document.createElement('label');lab.className='scen';
+    const inp=document.createElement('input');inp.type='radio';inp.name='scen';inp.value=s.id;inp.checked=s.id===state.scenarioId;
+    inp.setAttribute('aria-describedby','sd-'+i);
+    inp.addEventListener('change',()=>{state.scenarioId=s.id;save();});
+    const body=document.createElement('div');body.className='body';
+    body.innerHTML='<div class="face"><svg width="46" height="46" viewBox="0 0 200 200" aria-hidden="true">'+avatarSVG(s.avatar,'c'+i)+'</svg>'+
+      '<div><h3></h3><div class="meta"></div></div><span class="check" aria-hidden="true"></span></div><p class="meta" id="sd-'+i+'" style="margin:0"></p>'+
+      (s.custom?'<span><span class="pill">Custom</span> <button type="button" class="btn small del">Delete</button></span>':'');
+    $('h3',body).textContent=s.title;
+    $('.face .meta',body).textContent='Call '+s.parent+' ('+s.rel+' of '+s.child+', '+s.grade+')';
+    $('#sd-'+i,body).textContent=s.news;
+    if(s.custom){$('.del',body).addEventListener('click',e=>{e.preventDefault();if(confirm('Delete the scenario "'+s.title+'"?')){state.custom=state.custom.filter(c=>c.id!==s.id);if(state.scenarioId===s.id)state.scenarioId=BUILTIN[0].id;save();renderScenarios();}});}
+    lab.append(inp,body);grid.appendChild(lab);
+  });
+  const ss=$('#stanceSeg');ss.innerHTML='';
+  Object.entries(STANCES).forEach(([k,v])=>{const l=document.createElement('label');l.innerHTML='<input type="radio" name="stance">';const r=l.firstChild;r.value=k;r.checked=k===state.stance;
+    r.addEventListener('change',()=>{state.stance=k;save();$('#stanceHint').textContent=v.hint;});l.append(' '+v.label);ss.appendChild(l);});
+  $('#stanceHint').textContent=STANCES[state.stance].hint;
+  const ds=$('#diffSeg');ds.innerHTML='';
+  Object.entries(DIFFS).forEach(([k,v])=>{const l=document.createElement('label');l.innerHTML='<input type="radio" name="diff">';const r=l.firstChild;r.value=k;r.checked=k===state.difficulty;
+    r.addEventListener('change',()=>{state.difficulty=k;save();$('#diffHint').textContent=v.hint;});l.append(' '+v.label);ds.appendChild(l);});
+  $('#diffHint').textContent=DIFFS[state.difficulty].hint;
+  const vs=$('#voice');vs.innerHTML='';VOICES.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;o.selected=v===state.voice;vs.appendChild(o);});
+}
+$('#voice').addEventListener('change',e=>{state.voice=e.target.value;save();});
+$('#toPrep').addEventListener('click',()=>go('prep'));
+$('#customForm').addEventListener('submit',e=>{
+  e.preventDefault();const v=id=>$('#c-'+id).value.trim();
+  const palette=[{skin:'#C68B59',hair:'#2B1B10',style:'short',shirt:'#006BA6'},{skin:'#8D5A3B',hair:'#1C120C',style:'long',shirt:'#CE1126'},{skin:'#E1B892',hair:'#6B4423',style:'bun',shirt:'#14213D'},{skin:'#5C3A24',hair:'#120B07',style:'curly',shirt:'#48C6E4'}];
+  const s={id:'c'+Date.now(),custom:true,title:v('title'),parent:v('parent'),rel:v('rel'),child:v('child'),grade:v('grade'),role:v('role'),news:v('news'),evidence:v('evidence'),back:v('back'),goal:v('goal'),
+    avatar:palette[state.custom.length%palette.length],demo:null};
+  state.custom.push(s);state.scenarioId=s.id;save();e.target.reset();renderScenarios();announce('Scenario saved and selected.');
+});
+$('#exportScen').addEventListener('click',()=>{if(!state.custom.length){announce('You have no custom scenarios yet.');return;}
+  downloadBlob(JSON.stringify({type:'parent-call-practice-scenarios',version:1,scenarios:state.custom},null,2),'application/json','parent-call-scenarios.json');});
+$('#importScen').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{try{const j=JSON.parse(rd.result);const arr=Array.isArray(j)?j:j.scenarios;if(!Array.isArray(arr))throw new Error('No scenarios found');
+    let n=0;arr.forEach(s=>{if(!s||!s.title||!s.parent||!s.news)return;const c={};['title','parent','rel','child','grade','role','news','evidence','back','goal'].forEach(k=>c[k]=String(s[k]||'').slice(0,4000));
+      c.id='c'+Date.now()+'-'+(n++);c.custom=true;c.avatar=(s.avatar&&typeof s.avatar==='object')?{skin:String(s.avatar.skin||'#C68B59').slice(0,9),hair:String(s.avatar.hair||'#2B1B10').slice(0,9),style:String(s.avatar.style||'short').slice(0,8),shirt:String(s.avatar.shirt||'#006BA6').slice(0,9)}:undefined;
+      c.demo=Array.isArray(s.demo)?s.demo.map(x=>String(x).slice(0,500)).slice(0,12):null;state.custom.push(c);});
+    save();renderScenarios();announce('Imported '+n+' scenario'+(n===1?'':'s')+'.');}catch(err){announce('That file could not be imported: '+err.message);}
+    e.target.value='';};
+  rd.readAsText(f);
+});
+
+/* ================= Prep screen ================= */
+function renderPrep(){
+  const s=scenario();
+  $('#briefTitle').textContent=s.title;
+  const dl=$('#briefList');dl.innerHTML='';
+  [['You are',s.role],['Calling',s.parent+', '+s.rel+' of '+s.child+' ('+s.grade+')'],['The news',s.news],['What you can share',s.evidence],['Goal for the call',s.goal],
+   ['Parent tends to be',STANCES[state.stance].label+'. '+STANCES[state.stance].hint],['Difficulty',DIFFS[state.difficulty].label]].forEach(([k,v])=>{
+    if(!v)return;const dt=document.createElement('dt');dt.textContent=k;const dd=document.createElement('dd');dd.textContent=v;dl.append(dt,dd);});
+  $('#p-open').value=state.prep.open;$('#p-facts').value=state.prep.facts;$('#p-next').value=state.prep.next;
+}
+[['p-open','open'],['p-facts','facts'],['p-next','next']].forEach(([id,k])=>$('#'+id).addEventListener('input',e=>{state.prep[k]=e.target.value;save();flash($('#savedFlash'));}));
+
+let micTestStream=null;
+$('#micTest').addEventListener('click',async()=>{
+  const st=$('#micTestStatus');
+  if(micTestStream){micTestStream.getTracks().forEach(t=>t.stop());micTestStream=null;$('#micTest').textContent='Test my microphone';st.textContent='Mic test stopped.';return;}
+  try{micTestStream=await navigator.mediaDevices.getUserMedia({audio:true});}catch(e){st.textContent='Microphone blocked or unavailable: '+e.message;return;}
+  $('#micTest').textContent='Stop test';st.textContent='Speak. The bar should move.';
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();const src=ctx.createMediaStreamSource(micTestStream);const an=ctx.createAnalyser();an.fftSize=512;src.connect(an);
+  const buf=new Uint8Array(an.fftSize);const c=$('#micTestMeter');const g=c.getContext('2d');let heard=false;
+  (function loop(){if(!micTestStream){ctx.close();g.clearRect(0,0,c.width,c.height);return;}
+    an.getByteTimeDomainData(buf);let m=0;for(const v of buf)m=Math.max(m,Math.abs(v-128));const lvl=Math.min(1,m/60);
+    if(lvl>.25&&!heard){heard=true;st.textContent='✓ We can hear you.';}
+    g.clearRect(0,0,c.width,c.height);g.fillStyle='#CE1126';g.fillRect(0,0,c.width*lvl,c.height);requestAnimationFrame(loop);})();
+});
+
+/* ================= Call engine (shared) ================= */
+let callActive=false, paused=false, muted=false, session=null, timerId=null, remaining=0, callStart=0;
+let audioCtx=null, micStream=null, micNode=null, micAnalyser=null, outAnalyser=null, outGain=null, worklet=null;
+let speakingLevel=0; // 0..1 for avatar
+let fakeLevel=0;
+const engine={kind:null};
+
+function setStatus(s,text){const el=$('#callStatus');el.dataset.s=s;$('#callStatusText').textContent=text;}
+
+function newSession(){
+  const s=scenario();
+  return {id:'s'+Date.now(),scenarioId:s.id,scenarioTitle:s.title,parent:s.parent,rel:s.rel,child:s.child,grade:s.grade,role:s.role,news:s.news,goal:s.goal,
+    stance:state.stance,difficulty:state.difficulty,mode:state.mode,startedAt:Date.now(),durationSec:0,transcript:[],feedback:null,localFb:null,ratings:{},reflections:{},
+    prep:Object.assign({},state.prep),name:state.name};
+}
+
+/* ---- transcript model ---- */
+let liveEntry={parent:null,student:null};
+let interimStudent='';
+function elapsed(){return callStart?(Date.now()-callStart)/1000:0;}
+function addChunk(role,text,opts){
+  if(!session||!text)return;opts=opts||{};
+  const other=role==='parent'?'student':'parent';
+  if(liveEntry[other])finalize(other);
+  let e=liveEntry[role];
+  if(!e){e={role,text:'',t:elapsed(),typed:!!opts.typed};session.transcript.push(e);liveEntry[role]=e;e._el=renderLine(e);}
+  e.text=(e.text+text).replace(/\s+/g,' ').replace(/^\s+/,'');
+  $('.tx',e._el).textContent=e.text;
+  if(role==='student')interimStudent='';
+  renderCaption(role);
+  scrollLog();
+}
+function finalize(role){
+  const e=liveEntry[role];if(!e)return;liveEntry[role]=null;
+  e.text=e.text.trim();
+  if(!e.text){session.transcript.splice(session.transcript.indexOf(e),1);e._el&&e._el.remove();return;}
+  e._el.removeAttribute('aria-hidden');
+  delete e._el;save();
+}
+function addSystem(text){if(!session)return;const e={role:'system',text,t:elapsed()};session.transcript.push(e);const el=renderLine(e);el.removeAttribute('aria-hidden');scrollLog();}
+function renderLine(e){
+  const p=document.createElement('p');p.className='line '+e.role;
+  // streaming lines are hidden from the live region until finalized, so screen readers hear complete sentences
+  if(e.role!=='system')p.setAttribute('aria-hidden','true');
+  const who=e.role==='parent'?(session.parent||'Parent'):e.role==='student'?('You'+(e.typed?' (typed)':'')):'Note';
+  p.innerHTML='<span class="w"></span><span class="tx"></span>';
+  $('.w',p).textContent=who;const ts=document.createElement('span');ts.className='ts';ts.textContent=fmt(e.t);$('.w',p).appendChild(ts);
+  $('.tx',p).textContent=e.text;$('#log').appendChild(p);return p;
+}
+function scrollLog(){const l=$('#log');l.scrollTop=l.scrollHeight;}
+function renderCaption(role){
+  const cap=$('#captions');
+  const e=liveEntry[role]||[...session.transcript].reverse().find(x=>x.role===role);
+  let text=e?e.text:'';
+  if(role==='student'&&interimStudent)text=(text?text+' ':'')+interimStudent;
+  if(!text){return;}
+  const tail=text.length>220?'… '+text.slice(-220):text;
+  cap.innerHTML='';const spk=document.createElement('span');spk.className='spk'+(role==='student'?' student':'');spk.textContent=role==='parent'?session.parent.split(' ')[0]:'You';
+  const tx=document.createElement('span');tx.textContent=tail;cap.append(spk,tx);
+}
+function showInterim(text){interimStudent=text;if(liveEntry.parent)finalize('parent');
+  const cap=$('#captions');const e=liveEntry.student;
+  cap.innerHTML='';const spk=document.createElement('span');spk.className='spk student';spk.textContent='You';
+  const a=document.createElement('span');a.textContent=e?e.text+' ':'';const b=document.createElement('span');b.className='interim';b.textContent=text;cap.append(spk,a,b);}
+
+/* ---- visuals ---- */
+let rafId=null;
+function startVisuals(){
+  const ring=$('#ring'),rg=ring.getContext('2d');const ym=$('#youMeter'),yg=ym.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fbuf=new Uint8Array(128), tbuf=new Uint8Array(1024);
+  let smooth=0;
+  const mouth=()=>$('#portrait .mouth');
+  function frame(){
+    rafId=requestAnimationFrame(frame);
+    // parent level
+    let lvl=0;const bins=new Array(64).fill(0);
+    if(outAnalyser){outAnalyser.getByteFrequencyData(fbuf);let sum=0;for(let i=0;i<64;i++){bins[i]=fbuf[i+2]/255;sum+=bins[i];}lvl=Math.min(1,sum/64*2.2);}
+    if(engine.kind==='demo'&&demoSpeaking){fakeLevel+=(0.35+Math.random()*0.6-fakeLevel)*0.35;lvl=fakeLevel;for(let i=0;i<64;i++)bins[i]=Math.max(0,fakeLevel*(0.5+0.5*Math.sin(i*0.6+performance.now()/90))*(1-i/90));}
+    smooth+=(lvl-smooth)*0.3;speakingLevel=smooth;
+    const W=ring.width,H=ring.height,cx=W/2,cy=H/2;rg.clearRect(0,0,W,H);
+    const base=W*0.34;
+    rg.beginPath();rg.arc(cx,cy,base+8+(reduce?0:smooth*22),0,Math.PI*2);rg.strokeStyle='rgba(72,198,228,'+(0.25+smooth*0.6)+')';rg.lineWidth=4;rg.stroke();
+    for(let i=0;i<64;i++){const a=(i/64)*Math.PI*2-Math.PI/2;const v=reduce?smooth*0.6:bins[i];const len=10+v*W*0.12;
+      rg.beginPath();rg.moveTo(cx+Math.cos(a)*(base+20),cy+Math.sin(a)*(base+20));rg.lineTo(cx+Math.cos(a)*(base+20+len),cy+Math.sin(a)*(base+20+len));
+      rg.strokeStyle=i%8===0?'#CE1126':'rgba(72,198,228,.85)';rg.lineWidth=6;rg.lineCap='round';rg.stroke();}
+    const m=mouth();if(m)m.setAttribute('ry',(2.5+smooth*11).toFixed(1));
+    // student meter
+    yg.clearRect(0,0,ym.width,ym.height);
+    let slvl=0;
+    if(micAnalyser&&!muted&&!paused){micAnalyser.getByteTimeDomainData(tbuf);yg.beginPath();for(let i=0;i<tbuf.length;i+=8){const x=i/tbuf.length*ym.width;const y=ym.height/2+(tbuf[i]-128)/128*ym.height*1.4;i?yg.lineTo(x,y):yg.moveTo(x,y);}
+      yg.strokeStyle='#FFD166';yg.lineWidth=3;yg.stroke();}
+    else if(engine.kind==='demo'&&demoListening&&!muted&&!paused){const t=performance.now()/300;yg.beginPath();for(let x=0;x<ym.width;x+=8){const y=ym.height/2+Math.sin(x/30+t)*4;x?yg.lineTo(x,y):yg.moveTo(x,y);}yg.strokeStyle='rgba(255,209,102,.6)';yg.lineWidth=3;yg.stroke();}
+    else{yg.fillStyle='rgba(255,255,255,.25)';yg.fillRect(0,ym.height/2-1,ym.width,2);}
+  }
+  cancelAnimationFrame(rafId);frame();
+}
+
+/* ---- timer ---- */
+function startTimer(){
+  remaining=state.limitMin*60;callStart=Date.now();$('#timer').textContent=fmt(remaining);
+  clearInterval(timerId);let last=remaining;
+  timerId=setInterval(()=>{
+    if(paused)return;
+    remaining-=1;$('#timer').textContent=fmt(remaining);$('#timer').classList.toggle('low',remaining<=60);
+    $('#timer').setAttribute('aria-label','Time remaining '+fmt(remaining));
+    if(remaining===120)announce('Two minutes left in the call.');
+    if(remaining===60){announce('One minute left. Start wrapping up.');addSystem('One minute left.');}
+    if(remaining===15)announce('Fifteen seconds left.');
+    if(remaining<=0){addSystem('Time limit reached.');endCall('time');}
+  },1000);
+}
+
+/* ---- start / end ---- */
+$('#startCall').addEventListener('click',async()=>{
+  if(micTestStream){micTestStream.getTracks().forEach(t=>t.stop());micTestStream=null;}
+  if(state.mode==='live'&&!apiKey){go('setup');$('#keyStatus').textContent='A key is needed for Live mode.';return;}
+  session=newSession();state.sessions.push(session);state.currentId=session.id;
+  if(state.sessions.length>20)state.sessions=state.sessions.slice(-20);save();
+  liveEntry={parent:null,student:null};interimStudent='';
+  $('#log').innerHTML='';$('#captions').innerHTML='<span class="idle">Connecting…</span>';
+  const s=scenario();
+  $('#callName').textContent=s.parent;$('#callSub').textContent=s.rel+' of '+s.child+' · '+s.grade+' · '+STANCES[state.stance].label;
+  $('#portrait').innerHTML=avatarSVG(s.avatar,'call');
+  $('#captions').dataset.size=state.caption.size;$('#captions').dataset.contrast=state.caption.contrast;$('#capSize').value=state.caption.size;$('#capColor').value=state.caption.contrast;
+  const pp=$('#planPeekBody');pp.innerHTML='';[['Opening',state.prep.open],['The news',state.prep.facts],['Next step',state.prep.next]].forEach(([k,v])=>{if(!v)return;const p=document.createElement('p');p.style.margin='0 0 6px';const b=document.createElement('b');b.textContent=k+': ';p.append(b,document.createTextNode(v));pp.appendChild(p);});
+  if(!pp.childNodes.length)pp.textContent='No plan written.';
+  muted=false;paused=false;$('#muteBtn').setAttribute('aria-pressed','false');$('#muteBtn span').textContent='Mute';
+  callActive=true;
+  ORDER.forEach(id=>{$('#screen-'+id).hidden=(id!=='call');});
+  $$('#steps li').forEach((li,i)=>{li.removeAttribute('aria-current');li.classList.toggle('done',i<3);if(i===3)li.setAttribute('aria-current','step');});
+  window.scrollTo({top:0});$('#h-call').setAttribute('tabindex','-1');$('#h-call').focus({preventScroll:true});
+  setStatus('connecting','Connecting…');
+  try{
+    audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended')await audioCtx.resume();
+    outGain=audioCtx.createGain();outAnalyser=audioCtx.createAnalyser();outAnalyser.fftSize=256;outAnalyser.smoothingTimeConstant=0.6;
+    outGain.connect(outAnalyser);outAnalyser.connect(audioCtx.destination);
+    startVisuals();
+    if(state.mode==='live')await startLive();else await startDemo();
+  }catch(err){
+    console.error(err);addSystem('Could not start the call: '+(err.message||err));setStatus('idle','Not connected');announce('The call could not start. '+(err.message||''));
+    teardown();callActive=false;
+    const back=document.createElement('button');back.className='btn small';back.type='button';back.textContent='Back to preparation';back.style.marginTop='8px';
+    back.addEventListener('click',()=>go('prep'));$('#log').appendChild(back);
+  }
+});
+
+async function getMic(){
+  micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true,channelCount:1}});
+  micNode=audioCtx.createMediaStreamSource(micStream);micAnalyser=audioCtx.createAnalyser();micAnalyser.fftSize=1024;micNode.connect(micAnalyser);
+}
+
+function endCall(reason){
+  if(!callActive)return;
+  callActive=false;
+  if(liveEntry.parent)finalize('parent');if(liveEntry.student)finalize('student');
+  session.durationSec=Math.round(elapsed());
+  addSystem(reason==='time'?'Call ended (time limit).':reason==='remote'?'Call ended (connection closed).':'Call ended.');
+  teardown();
+  $('#breakOverlay').hidden=true;
+  session.localFb=localAnalysis(session);
+  save();setStatus('idle','Call ended');announce('Call ended. Opening your debrief.');
+  setTimeout(()=>go('debrief'),600);
+}
+function teardown(){
+  clearInterval(timerId);
+  if(engine.kind==='live')liveStop();
+  if(engine.kind==='demo')demoStop();
+  engine.kind=null;
+  if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}
+  micAnalyser=null;
+  setTimeout(()=>{cancelAnimationFrame(rafId);if(audioCtx){audioCtx.close().catch(()=>{});audioCtx=null;}outAnalyser=null;},300);
+}
+$('#endBtn').addEventListener('click',()=>{if(callActive&&confirm('End the call now?'))endCall('user');});
+$('#muteBtn').addEventListener('click',()=>{
+  if(!callActive)return;muted=!muted;$('#muteBtn').setAttribute('aria-pressed',String(muted));$('#muteBtn span').textContent=muted?'Unmute':'Mute';
+  setStatus(muted?'muted':'live',muted?'Muted':'Live');announce(muted?'Microphone muted.':'Microphone on.',true);
+  if(engine.kind==='live'&&muted)liveSend({realtimeInput:{audioStreamEnd:true}});
+  if(engine.kind==='demo')demoMuteChanged();
+});
+let lastFocus=null;
+$('#breakBtn').addEventListener('click',()=>{
+  if(!callActive)return;paused=true;lastFocus=document.activeElement;
+  if(engine.kind==='live'){liveSend({realtimeInput:{audioStreamEnd:true}});stopPlayback();}
+  if(engine.kind==='demo'){speechSynthesis.cancel();demoSpeaking=false;demoRecStop();}
+  setStatus('paused','On hold');addSystem('Call paused.');$('#breakOverlay').hidden=false;$('#resumeBtn').focus();
+});
+function resume(){paused=false;$('#breakOverlay').hidden=true;addSystem('Call resumed.');setStatus(muted?'muted':'live',muted?'Muted':'Live');
+  if(engine.kind==='demo')demoListen();
+  (lastFocus||$('#breakBtn')).focus();}
+$('#resumeBtn').addEventListener('click',resume);
+$('#breakEndBtn').addEventListener('click',()=>{$('#breakOverlay').hidden=true;endCall('user');});
+$('#breakOverlay').addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();resume();}
+  if(e.key==='Tab'){const f=$$('button',$('#breakOverlay'));const i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}}
+});
+$('#typeForm').addEventListener('submit',e=>{
+  e.preventDefault();const inp=$('#typeInput');const text=inp.value.trim();if(!text||!callActive||paused)return;inp.value='';
+  if(liveEntry.student)finalize('student');
+  addChunk('student',text,{typed:true});finalize('student');
+  if(engine.kind==='live')liveSend({realtimeInput:{text}});
+  if(engine.kind==='demo')demoStudentSaid(text);
+});
+$('#capSize').addEventListener('change',e=>{state.caption.size=e.target.value;$('#captions').dataset.size=e.target.value;save();});
+$('#capColor').addEventListener('change',e=>{state.caption.contrast=e.target.value;$('#captions').dataset.contrast=e.target.value;save();});
+window.addEventListener('beforeunload',e=>{if(callActive){e.preventDefault();e.returnValue='';}});
+
+/* ================= LIVE engine (Gemini Live API, raw WebSocket) ================= */
+let ws=null, nextPlay=0, sources=[];
+function systemPrompt(){
+  const s=scenario(),st=STANCES[state.stance],d=DIFFS[state.difficulty];
+  return [
+`You are role-playing ${s.parent}, the ${s.rel} of ${s.child}, a ${s.grade} student. The person calling you is a teacher-education student practicing how to deliver difficult news. In the role-play they are ${s.child}'s ${s.role}. You are a realistic parent on a phone call. You are NOT an AI assistant, coach, or tutor.`,
+`WHAT THE CALLER IS GOING TO TELL YOU (you do not know any of this yet, so react as you learn it): ${s.news}`,
+s.evidence?`DETAILS THE CALLER MAY SHARE: ${s.evidence}`:'',
+s.back?`YOUR PRIVATE LIFE AND BACKSTORY (bring these up naturally, the way a real parent would): ${s.back}`:'',
+`YOUR EMOTIONAL STANCE: ${st.prompt}`,
+`DIFFICULTY: ${d.prompt}`,
+`HOW TO PLAY:
+- When the call connects, answer the phone naturally, for example "Hello?" or "This is ${s.parent.split(' ')[0]}." Do not guess why they're calling.
+- Talk like a real person on the phone: short turns, usually one to three sentences. Use natural hesitations now and then. Never give speeches or lists.
+- React to HOW the news is delivered. Jargon, vagueness, blame, defensiveness, or rushing make you more upset or confused. Plain language, empathy, specific evidence, and a concrete plan gradually help.
+- Ask what a real parent would ask: why nobody told you sooner, what happens next, whether your child is okay, what the school will do.
+- Stay in character for the whole call. Never give the caller feedback, tips, or evaluation. Never mention being an AI, a model, a simulation, or a role-play.
+- Keep it school-appropriate: no profanity, slurs, or threats of violence. You may ask for the principal or a meeting.
+- Only if the caller says "pause the role-play" or seems genuinely distressed (not just nervous) should you step out of character, kindly, and offer to continue.
+- When the caller wraps up, respond as the parent would and say goodbye.`
+  ].filter(Boolean).join('\n\n');
+}
+function liveSend(obj){if(ws&&ws.readyState===1)ws.send(JSON.stringify(obj));}
+async function startLive(){
+  engine.kind='live';
+  await getMic();
+  const wurl='wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key='+encodeURIComponent(apiKey);
+  ws=new WebSocket(wurl);
+  let setupDone=false;
+  await new Promise((resolve,reject)=>{
+    const to=setTimeout(()=>reject(new Error('Timed out connecting to Gemini.')),15000);
+    ws.onopen=()=>{
+      liveSend({setup:{
+        model:'models/'+state.liveModel.replace(/^models\//,''),
+        generationConfig:{responseModalities:['AUDIO'],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:state.voice}}}},
+        systemInstruction:{parts:[{text:systemPrompt()}]},
+        inputAudioTranscription:{},
+        outputAudioTranscription:{}
+      }});
+    };
+    ws.onmessage=async ev=>{
+      let msg;try{msg=JSON.parse(typeof ev.data==='string'?ev.data:await ev.data.text());}catch(e){return;}
+      if(msg.setupComplete&&!setupDone){setupDone=true;clearTimeout(to);resolve();return;}
+      handleServer(msg);
+    };
+    ws.onerror=()=>{};
+    ws.onclose=ev=>{
+      clearTimeout(to);
+      if(!setupDone){reject(new Error('Gemini closed the connection'+(ev.reason?': '+ev.reason:' (code '+ev.code+'). Check your key and model name.')));return;}
+      if(callActive){addSystem('Connection closed'+(ev.reason?': '+ev.reason:'.'));endCall('remote');}
+    };
+  });
+  // mic → 16 kHz PCM16 via AudioWorklet
+  const code=`class Cap extends AudioWorkletProcessor{constructor(){super();this.r=sampleRate/16000;this.acc=0;this.sum=0;this.cnt=0;this.buf=new Int16Array(800);this.n=0;}
+  process(inp){const ch=inp[0]&&inp[0][0];if(!ch)return true;for(let i=0;i<ch.length;i++){this.sum+=ch[i];this.cnt++;this.acc+=1;if(this.acc>=this.r){this.acc-=this.r;let v=this.sum/this.cnt;this.sum=0;this.cnt=0;v=Math.max(-1,Math.min(1,v));this.buf[this.n++]=v<0?v*32768:v*32767;if(this.n===this.buf.length){this.port.postMessage(this.buf.buffer,[this.buf.buffer]);this.buf=new Int16Array(800);this.n=0;}}}return true;}}
+  registerProcessor('cap16k',Cap);`;
+  const url=URL.createObjectURL(new Blob([code],{type:'application/javascript'}));
+  await audioCtx.audioWorklet.addModule(url);URL.revokeObjectURL(url);
+  worklet=new AudioWorkletNode(audioCtx,'cap16k');
+  const sink=audioCtx.createGain();sink.gain.value=0;
+  micNode.connect(worklet);worklet.connect(sink);sink.connect(audioCtx.destination);
+  worklet.port.onmessage=e=>{if(!callActive||muted||paused)return;liveSend({realtimeInput:{audio:{data:b64FromBuf(e.data),mimeType:'audio/pcm;rate=16000'}}});};
+  nextPlay=audioCtx.currentTime;
+  setStatus('live','Live');startTimer();
+  addSystem('Connected. The parent is picking up.');
+  liveSend({clientContent:{turns:[{role:'user',parts:[{text:'[The phone rings and you pick up. Answer the call.]'}]}],turnComplete:true}});
+}
+function b64FromBuf(buf){const b=new Uint8Array(buf);let s='';for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s);}
+function playPCM(b64,mime){
+  if(!audioCtx||paused)return;
+  const bin=atob(b64);const len=bin.length>>1;const f=new Float32Array(len);
+  for(let i=0;i<len;i++){let v=bin.charCodeAt(2*i)|(bin.charCodeAt(2*i+1)<<8);if(v>=32768)v-=65536;f[i]=v/32768;}
+  const m=/rate=(\d+)/.exec(mime||'');const rate=m?parseInt(m[1],10):24000;
+  const ab=audioCtx.createBuffer(1,len,rate);ab.copyToChannel(f,0);
+  const src=audioCtx.createBufferSource();src.buffer=ab;src.connect(outGain);
+  const t=Math.max(nextPlay,audioCtx.currentTime+0.04);src.start(t);nextPlay=t+ab.duration;
+  sources.push(src);src.onended=()=>{sources=sources.filter(x=>x!==src);if(!sources.length&&callActive&&!paused)setStatus(muted?'muted':'live',muted?'Muted':'Live');};
+  setStatus('parent',(session.parent||'Parent').split(' ')[0]+' is speaking');
+}
+function stopPlayback(){sources.forEach(s=>{try{s.stop();}catch(e){}});sources=[];if(audioCtx)nextPlay=audioCtx.currentTime;}
+function handleServer(msg){
+  const sc=msg.serverContent;
+  if(sc){
+    if(sc.interrupted){stopPlayback();if(liveEntry.parent)finalize('parent');}
+    if(sc.modelTurn&&Array.isArray(sc.modelTurn.parts)){sc.modelTurn.parts.forEach(p=>{if(p.inlineData&&p.inlineData.data)playPCM(p.inlineData.data,p.inlineData.mimeType);});}
+    if(sc.interimInputTranscription&&sc.interimInputTranscription.text)showInterim(sc.interimInputTranscription.text);
+    if(sc.inputTranscription&&sc.inputTranscription.text)addChunk('student',sc.inputTranscription.text);
+    if(sc.outputTranscription&&sc.outputTranscription.text)addChunk('parent',sc.outputTranscription.text);
+    if(sc.turnComplete){if(liveEntry.parent)finalize('parent');}
+  }
+  if(msg.goAway){addSystem('Google says this session will end soon.');}
+  if(msg.usageMetadata&&session){session.usage=msg.usageMetadata;}
+}
+function liveStop(){
+  stopPlayback();
+  if(worklet){try{worklet.port.onmessage=null;worklet.disconnect();}catch(e){}worklet=null;}
+  if(ws){const w=ws;ws=null;w.onclose=null;try{w.close(1000,'call ended');}catch(e){}}
+}
+
+/* ================= DEMO engine (no network) ================= */
+let demoSRBlocked=false;
+let demoIdx=0, demoSpeaking=false, demoListening=false, rec=null, demoTimer=null, demoRecWanted=false;
+function demoLines(){const s=scenario();if(s.demo&&s.demo.length)return s.demo;
+  return ['Hello?','Hi… who is this? Is everything okay with '+s.child+'?','Wait, what? Can you explain that again?','Why am I only hearing about this now?','What happens next? What are you going to do about it?','Okay. I\'ll come in and talk about it.','Thank you for calling. I need some time to think.'];}
+async function startDemo(){
+  engine.kind='demo';demoIdx=0;
+  try{await getMic();}catch(e){addSystem('Microphone not available. You can type your lines instead.');}
+  setStatus('live','Live (demo)');startTimer();
+  addSystem('Demo mode: a scripted parent. Speak or type after each line.');
+  if(!(window.SpeechRecognition||window.webkitSpeechRecognition))addSystem('This browser can\'t caption your speech. Type your lines in the box below the transcript.');
+  setTimeout(demoSpeakNext,700);
+}
+function demoVoice(){const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));return vs.find(v=>/Samantha|Google US English|Aria|Jenny/i.test(v.name))||vs[0]||null;}
+function demoSpeakNext(){
+  if(!callActive||paused)return;
+  const lines=demoLines();if(demoIdx>=lines.length){addSystem('End of the demo script. End the call when you\'re ready.');demoListen();return;}
+  const line=lines[demoIdx++];demoRecStop();
+  const words=line.split(' ');let shown=0;
+  const u=new SpeechSynthesisUtterance(line);const v=demoVoice();if(v)u.voice=v;u.rate=1.02;
+  demoSpeaking=true;setStatus('parent',(session.parent||'Parent').split(' ')[0]+' is speaking');
+  let boundaryWorks=false;
+  u.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;boundaryWorks=true;const upto=line.slice(0,ev.charIndex).split(' ').length;while(shown<upto&&shown<words.length){addChunk('parent',(shown?' ':'')+words[shown]);shown++;}};
+  u.onend=u.onerror=()=>{clearInterval(fallbackTick);while(shown<words.length){addChunk('parent',(shown?' ':'')+words[shown]);shown++;}finalize('parent');demoSpeaking=false;if(callActive&&!paused){setStatus(muted?'muted':'live',muted?'Muted':'Live (demo)');demoListen();}};
+  // fallback word reveal if the browser doesn't fire boundary events
+  const fallbackTick=setInterval(()=>{if(boundaryWorks){clearInterval(fallbackTick);return;}if(shown<words.length){addChunk('parent',(shown?' ':'')+words[shown]);shown++;}},330);
+  speechSynthesis.cancel();speechSynthesis.speak(u);
+}
+function demoListen(){
+  if(!callActive||paused||demoSpeaking)return;
+  demoListening=true;
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR||muted||demoSRBlocked)return;
+  demoRecWanted=true;
+  try{
+    rec=new SR();rec.lang='en-US';rec.continuous=true;rec.interimResults=true;
+    rec.onresult=ev=>{let interim='';for(let i=ev.resultIndex;i<ev.results.length;i++){const r=ev.results[i];if(r.isFinal){addChunk('student',(liveEntry.student?' ':'')+r[0].transcript.trim());clearTimeout(demoTimer);demoTimer=setTimeout(()=>demoStudentSaid(),1400);}else interim+=r[0].transcript;}
+      if(interim){showInterim(interim);clearTimeout(demoTimer);}};
+    rec.onerror=ev=>{if(ev.error==='not-allowed'||ev.error==='service-not-allowed'||ev.error==='audio-capture'){if(!demoSRBlocked)addSystem('Speech captioning isn\'t available here. Type your lines instead.');demoSRBlocked=true;demoRecWanted=false;}};
+    rec.onend=()=>{if(demoRecWanted&&callActive&&!paused&&!demoSpeaking&&!muted){try{rec.start();}catch(e){}}};
+    rec.start();
+  }catch(e){}
+}
+function demoRecStop(){demoRecWanted=false;demoListening=false;if(rec){try{rec.onend=null;rec.stop();}catch(e){}rec=null;}}
+function demoStudentSaid(){
+  if(!callActive)return;clearTimeout(demoTimer);if(liveEntry.student)finalize('student');interimStudent='';
+  demoRecStop();setTimeout(demoSpeakNext,600);
+}
+function demoMuteChanged(){if(muted)demoRecStop();else demoListen();}
+function demoStop(){clearTimeout(demoTimer);demoRecStop();try{speechSynthesis.cancel();}catch(e){}demoSpeaking=false;}
+
+/* ================= Feedback ================= */
+const EMPATHY=/\b(i understand|i('m| am) sorry|that must|i can (hear|imagine)|i know (this|that) is|it makes sense|i hear you|that's (hard|a lot|frustrating|understandable)|you('re| are) right to|thank you for)\b/gi;
+const JARGON=/\b(benchmark|tier (2|3|two|three)|rti|mtss|iep|504|fba|bip|lexile|progress monitoring|data points?|intervention block|ESS|LRE|manifestation)\b/gi;
+function localAnalysis(s){
+  const st=s.transcript.filter(e=>e.role==='student'),pa=s.transcript.filter(e=>e.role==='parent');
+  const wc=t=>t.split(/\s+/).filter(Boolean).length;
+  const sw=st.reduce((a,e)=>a+wc(e.text),0),pw=pa.reduce((a,e)=>a+wc(e.text),0);
+  const all=st.map(e=>e.text).join(' ');
+  const emp=(all.match(EMPATHY)||[]);const jar=(all.match(JARGON)||[]);
+  const qs=st.reduce((a,e)=>a+(e.text.match(/\?/g)||[]).length,0);
+  const longest=st.reduce((a,e)=>Math.max(a,wc(e.text)),0);
+  return {studentWords:sw,parentWords:pw,studentTurns:st.length,parentTurns:pa.length,talkShare:sw+pw?Math.round(sw/(sw+pw)*100):0,
+    empathy:[...new Set(emp.map(x=>x.toLowerCase()))],jargon:[...new Set(jar.map(x=>x.toUpperCase()))],questions:qs,longestTurn:longest};
+}
+function transcriptText(s,withTs){return s.transcript.filter(e=>e.role!=='system').map(e=>(withTs?'['+fmt(e.t)+'] ':'')+(e.role==='parent'?s.parent:'Caller')+': '+e.text).join('\n');}
+async function getAIFeedback(){
+  const s=currentSession();if(!s)return;
+  const btn=$('#fbBtn');btn.disabled=true;btn.textContent='Thinking…';$('#fbNote').textContent='Asking '+state.fbModel+' to review your transcript…';
+  const prompt=`You are an experienced teacher educator coaching a pre-service teacher who just practiced delivering difficult news to a parent in a role-play phone call. The "parent" was an AI role-play partner.
+
+Scenario: ${s.scenarioTitle}. The caller played ${s.child}'s ${s.role}, calling ${s.parent} (${s.rel}). The news: ${s.news}
+Goal: ${s.goal||'n/a'}. Parent stance: ${STANCES[s.stance].label}. Difficulty: ${DIFFS[s.difficulty].label}.
+
+Rubric criteria (score each 1-4: 1 Beginning, 2 Developing, 3 Proficient, 4 Exemplary):
+${RUBRIC.map(r=>'- '+r.id+': '+r.name+': '+r.desc).join('\n')}
+
+Transcript (machine-captioned; ignore small transcription errors):
+${transcriptText(s,true)}
+
+Return ONLY JSON with this shape:
+{"summary":"2-3 sentences, warm and direct, addressed to the caller as 'you'",
+ "criteria":[{"id":"open","score":1-4,"evidence":"short exact quote from the CALLER, or empty if none","comment":"one or two sentences","try":"one concrete thing to say or do differently, phrased as a sample line when possible"}],
+ "strengths":["..."],"next_time":["..."]}
+Include all five criteria ids in order. Base every score only on what the caller actually said. If the transcript is very short, say so and score conservatively.`;
+  try{
+    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(state.fbModel)+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},
+      body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0.4}})});
+    const j=await r.json();
+    if(!r.ok)throw new Error(j.error&&j.error.message||('HTTP '+r.status));
+    const text=(j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts||[]).map(p=>p.text||'').join('').replace(/^```(json)?|```$/g,'').trim();
+    const fb=JSON.parse(text);fb.model=state.fbModel;fb.at=Date.now();
+    s.feedback=fb;save();renderFeedback();announce('Feedback is ready.',true);
+  }catch(e){$('#fbNote').textContent='Feedback failed: '+e.message;}
+  btn.disabled=false;btn.textContent=s.feedback?'Regenerate feedback':'Get AI feedback';
+}
+$('#fbBtn').addEventListener('click',()=>{const s=currentSession();if(!s)return;
+  if(apiKey)getAIFeedback();else{$('#fbNote').textContent='AI feedback needs a Gemini key (Set up → Live mode). The on-device checks below work without one.';}});
+
+/* ================= Debrief ================= */
+function renderDebrief(){
+  const s=currentSession();
+  if(!s){$('#debriefLede').textContent='No call yet. Make a call first.';return;}
+  if(!s.localFb)s.localFb=localAnalysis(s);
+  const lf=s.localFb;
+  $('#debriefLede').textContent=s.scenarioTitle+'. Call with '+s.parent+' ('+STANCES[s.stance].label.toLowerCase()+', '+DIFFS[s.difficulty].label.toLowerCase()+'). '+fmt(s.durationSec)+' long, '+new Date(s.startedAt).toLocaleString()+'.';
+  $('#stats').innerHTML='';
+  const stat=(big,small,extra)=>{const d=document.createElement('div');d.className='stat';d.innerHTML='<b></b><span></span>'+(extra||'');$('b',d).textContent=big;$('span',d).textContent=small;$('#stats').appendChild(d);};
+  stat(fmt(s.durationSec),'call length');
+  stat(lf.talkShare+'%','of the words were yours','<div class="bar" aria-hidden="true"><i style="width:'+lf.talkShare+'%;background:#CE1126"></i><i style="width:'+(100-lf.talkShare)+'%;background:#48C6E4"></i></div>');
+  stat(String(lf.questions),'questions you asked');
+  stat(String(lf.empathy.length),'empathy phrases'+(lf.empathy.length?': "'+lf.empathy.slice(0,3).join('", "')+'"':''));
+  stat(String(lf.jargon.length),'jargon terms'+(lf.jargon.length?': '+lf.jargon.join(', '):''));
+  // transcript
+  const dt=$('#dTranscript');dt.innerHTML='';
+  s.transcript.forEach(e=>{const p=document.createElement('p');p.className='line';
+    if(e.role==='system'){p.style.color='#46526E';p.style.fontSize='13px';p.textContent='['+fmt(e.t)+'] '+e.text;}
+    else{const w=document.createElement('span');w.className='w';w.style.color=e.role==='parent'?'#006BA6':'#A30D1E';w.textContent=(e.role==='parent'?s.parent:'You'+(e.typed?' (typed)':''))+' ['+fmt(e.t)+']: ';p.append(w,document.createTextNode(e.text));}
+    dt.appendChild(p);});
+  if(!s.transcript.some(e=>e.role!=='system'))dt.textContent='No conversation was captured.';
+  renderFeedback();
+  // ratings
+  const rt=$('#ratings');rt.innerHTML='';
+  RUBRIC.forEach(r=>{const fs=document.createElement('fieldset');fs.innerHTML='<legend></legend><p class="hint" style="margin:0 0 6px"></p><div class="rate"></div>';
+    $('legend',fs).textContent=r.name;$('.hint',fs).textContent=r.desc;
+    [1,2,3,4].forEach(n=>{const l=document.createElement('label');l.innerHTML='<input type="radio">';const i=l.firstChild;i.name='rate-'+r.id;i.value=n;i.checked=s.ratings[r.id]===n;
+      i.addEventListener('change',()=>{s.ratings[r.id]=n;save();flash($('#savedFlash2'));});l.append(' '+n+' '+['Beginning','Developing','Proficient','Exemplary'][n-1]);$('.rate',fs).appendChild(l);});
+    rt.appendChild(fs);});
+  const rf=$('#reflections');rf.innerHTML='';
+  REFLECT.forEach(q=>{const d=document.createElement('div');d.className='field';const id='rf-'+q.id;d.innerHTML='<label></label><textarea></textarea>';
+    $('label',d).textContent=q.q;$('label',d).htmlFor=id;const ta=$('textarea',d);ta.id=id;ta.value=s.reflections[q.id]||'';
+    ta.addEventListener('input',()=>{s.reflections[q.id]=ta.value;save();flash($('#savedFlash2'));});rf.appendChild(d);});
+}
+function renderFeedback(){
+  const s=currentSession();const body=$('#fbBody');body.innerHTML='';
+  $('#fbBtn').textContent=s&&s.feedback?'Regenerate feedback':'Get AI feedback';
+  if(!s)return;
+  if(!s.feedback){
+    $('#fbNote').textContent=apiKey?'AI feedback reviews your transcript against the five-part rubric (adapted from SPIKES). It uses '+state.fbModel+'.':'Demo mode: these on-device checks need no key. Add a Gemini key to get AI feedback on the rubric.';
+    const lf=s.localFb||localAnalysis(s);const ul=document.createElement('ul');ul.style.margin='0';ul.style.paddingLeft='20px';
+    const tips=[];
+    if(lf.talkShare>65)tips.push('You did '+lf.talkShare+'% of the talking. In hard conversations, aim to leave more room for the parent to react.');
+    else if(lf.talkShare<25&&lf.studentWords>0)tips.push('The parent did most of the talking. Make sure you stated the news clearly and offered a plan.');
+    else if(lf.studentWords>0)tips.push('Talk balance looks healthy ('+lf.talkShare+'% yours).');
+    tips.push(lf.empathy.length?'You used empathy language ("'+lf.empathy[0]+'"). Did it come before or after the parent reacted?':'No empathy phrases detected. Try naming the emotion: "I can hear how upsetting this is."');
+    if(lf.jargon.length)tips.push('Jargon detected ('+lf.jargon.join(', ')+'). Translate school terms into plain language for families.');
+    tips.push(lf.questions?'You asked '+lf.questions+' question(s). Open questions ("What questions do you have?") invite partnership.':'You didn\'t ask the parent any questions. Try checking their understanding or inviting their view.');
+    if(lf.longestTurn>90)tips.push('Your longest turn was '+lf.longestTurn+' words. Long monologues can bury the news. Break it into shorter pieces and pause.');
+    tips.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
+    const h=document.createElement('h3');h.style.fontSize='16px';h.textContent='On-device checks (not AI)';body.append(h,ul);return;
+  }
+  const fb=s.feedback;
+  $('#fbNote').textContent='AI-generated by '+(fb.model||'Gemini')+'. It can misread the transcript, so treat it as one perspective, not a grade.';
+  const sum=document.createElement('p');sum.textContent=fb.summary||'';body.appendChild(sum);
+  (fb.criteria||[]).forEach(c=>{const r=RUBRIC.find(x=>x.id===c.id)||{name:c.id};const sc=Math.max(0,Math.min(4,parseInt(c.score,10)||0));
+    const d=document.createElement('div');d.className='crit';
+    d.innerHTML='<h4></h4><div class="score" aria-hidden="true">'+[1,2,3,4].map(n=>'<span class="'+(n<=sc?'on':'')+'"></span>').join('')+'</div><p class="visually-hidden sc"></p>'+(c.evidence?'<blockquote></blockquote>':'')+'<p class="cm" style="margin:6px 0"></p>'+(c.try?'<p class="tr" style="margin:0"><b>Try: </b><span></span></p>':'');
+    $('h4',d).textContent=r.name+' · '+sc+'/4';$('.sc',d).textContent='Score '+sc+' of 4';if(c.evidence)$('blockquote',d).textContent='"'+c.evidence+'"';$('.cm',d).textContent=c.comment||'';if(c.try)$('.tr span',d).textContent=c.try;
+    body.appendChild(d);});
+  [['What went well',fb.strengths],['Next time',fb.next_time]].forEach(([t,arr])=>{if(!arr||!arr.length)return;const h=document.createElement('h3');h.style.fontSize='16px';h.textContent=t;const ul=document.createElement('ul');ul.style.margin='0';ul.style.paddingLeft='20px';
+    arr.forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li);});body.append(h,ul);});
+}
+
+/* ================= Export ================= */
+function buildReportHTML(s){
+  const lf=s.localFb||localAnalysis(s);const fb=s.feedback;
+  const row=(k,v)=>v?'<tr><th>'+escHTML(k)+'</th><td>'+escHTML(v)+'</td></tr>':'';
+  const tx=s.transcript.map(e=>e.role==='system'?'<p class="sys">['+fmt(e.t)+'] '+escHTML(e.text)+'</p>':'<p><b class="'+e.role+'">'+escHTML(e.role==='parent'?s.parent:'Caller'+(e.typed?' (typed)':''))+'</b> <span class="ts">['+fmt(e.t)+']</span> '+escHTML(e.text)+'</p>').join('');
+  const fbHTML=fb?('<p>'+escHTML(fb.summary||'')+'</p>'+(fb.criteria||[]).map(c=>{const r=RUBRIC.find(x=>x.id===c.id)||{name:c.id};return '<div class="crit"><h3>'+escHTML(r.name)+' <span class="sc">'+escHTML(String(c.score))+'/4</span></h3>'+(c.evidence?'<blockquote>"'+escHTML(c.evidence)+'"</blockquote>':'')+'<p>'+escHTML(c.comment||'')+'</p>'+(c.try?'<p><b>Try:</b> '+escHTML(c.try)+'</p>':'')+'</div>';}).join('')+
+    (fb.strengths&&fb.strengths.length?'<h3>What went well</h3><ul>'+fb.strengths.map(x=>'<li>'+escHTML(x)+'</li>').join('')+'</ul>':'')+
+    (fb.next_time&&fb.next_time.length?'<h3>Next time</h3><ul>'+fb.next_time.map(x=>'<li>'+escHTML(x)+'</li>').join('')+'</ul>':'')+
+    '<p class="note">AI-generated feedback ('+escHTML(fb.model||'Gemini')+'). May contain errors.</p>'):'<p class="note">No AI feedback was generated for this call.</p>';
+  const rates=RUBRIC.map(r=>'<tr><th>'+escHTML(r.name)+'</th><td>'+(s.ratings[r.id]?escHTML(s.ratings[r.id]+' · '+['Beginning','Developing','Proficient','Exemplary'][s.ratings[r.id]-1]):'Not rated')+'</td></tr>').join('');
+  const refl=REFLECT.map(q=>'<div class="q">'+escHTML(q.q)+'</div><div class="a">'+(s.reflections[q.id]?escHTML(s.reflections[q.id]):'<span class="note">No response</span>')+'</div>').join('');
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Parent Call Practice Report: '+escHTML(s.name||'Student')+'</title><style>'+
+  'body{margin:0;background:#F4F6FA;color:#14213D;font-family:Archivo,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55;padding:32px 16px}'+
+  '.doc{max-width:820px;margin:0 auto;background:#fff;border:1px solid #D3DAE6;border-top:8px solid #CE1126;border-radius:12px;padding:32px 36px}'+
+  'h1{font-size:30px;margin:0 0 4px;letter-spacing:-.01em}h2{font-size:20px;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #14213D}h3{font-size:16px;margin:14px 0 4px}'+
+  '.meta{color:#46526E;font-size:14px}table{border-collapse:collapse;width:100%;font-size:15px}th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #E3E8F0}th{width:34%;color:#14213D}'+
+  '.stats{display:flex;flex-wrap:wrap;gap:10px}.stats div{border:1px solid #D3DAE6;border-radius:10px;padding:8px 12px;font-size:14px}.stats b{display:block;font-size:20px}'+
+  '.tx p{margin:0 0 6px;font-size:15px}.tx b.parent{color:#006BA6}.tx b.student{color:#A30D1E}.ts{color:#6B7690;font-size:12px}.sys{color:#6B7690;font-size:13px}'+
+  '.crit{border:1px solid #D3DAE6;border-radius:10px;padding:10px 14px;margin:10px 0;break-inside:avoid}.sc{background:#CE1126;color:#fff;border-radius:999px;padding:1px 8px;font-size:13px}'+
+  'blockquote{margin:6px 0;padding:4px 10px;border-left:4px solid #48C6E4;background:#F1F7FB}.q{font-weight:700;margin-top:14px}.a{white-space:pre-wrap;margin-top:4px}.note{color:#6B7690;font-size:13px}'+
+  'footer{margin-top:28px;padding-top:12px;border-top:1px solid #D3DAE6;color:#46526E;font-size:12px}@page{margin:16mm}@media print{body{background:#fff;padding:0}.doc{border:0;padding:0}}'+
+  '</style></head><body><div class="doc">'+
+  '<div class="meta">PARENT CALL PRACTICE · DELIVERING DIFFICULT NEWS</div><h1>'+escHTML(s.scenarioTitle)+'</h1>'+
+  '<div class="meta">'+escHTML(s.name||'Student')+' · '+escHTML(new Date(s.startedAt).toLocaleString())+' · '+(s.mode==='live'?'Live AI parent':'Demo (scripted parent)')+'</div>'+
+  '<h2>Scenario</h2><table>'+row('Caller\'s role',s.role)+row('Parent',s.parent+' ('+s.rel+' of '+s.child+', '+s.grade+')')+row('The news',s.news)+row('Goal',s.goal)+row('Parent stance',STANCES[s.stance].label)+row('Difficulty',DIFFS[s.difficulty].label)+'</table>'+
+  '<h2>My plan</h2><table>'+row('Opening',s.prep.open||'—')+row('The news, plainly',s.prep.facts||'—')+row('Next step',s.prep.next||'—')+'</table>'+
+  '<h2>Call at a glance</h2><div class="stats"><div><b>'+fmt(s.durationSec)+'</b>length</div><div><b>'+lf.talkShare+'%</b>of the words were mine</div><div><b>'+lf.questions+'</b>questions asked</div><div><b>'+lf.empathy.length+'</b>empathy phrases</div><div><b>'+lf.jargon.length+'</b>jargon terms'+(lf.jargon.length?': '+escHTML(lf.jargon.join(', ')):'')+'</div></div>'+
+  '<h2>Transcript</h2><div class="tx">'+(tx||'<p class="note">No transcript.</p>')+'</div><p class="note">Machine-generated captions. May contain transcription errors.</p>'+
+  '<h2>Feedback</h2>'+fbHTML+
+  '<h2>Self-rating</h2><table>'+rates+'</table>'+
+  '<h2>Reflection</h2>'+refl+
+  '<footer>Generated with Parent Call Practice · Marc Watkins, University of Mississippi · Rubric adapted from the SPIKES protocol (Baile et al., 2000). The parent was an AI role-play voice'+(s.mode==='live'?' (Google Gemini)':' (scripted demo)')+'. Built with AI assistance (Claude), human-reviewed · CC BY 4.0</footer>'+
+  '</div></body></html>';
+}
+function reportText(s){
+  const lf=s.localFb||localAnalysis(s);
+  let t='PARENT CALL PRACTICE: '+s.scenarioTitle+'\n'+(s.name||'Student')+' · '+new Date(s.startedAt).toLocaleString()+'\nParent: '+s.parent+' ('+STANCES[s.stance].label+', '+DIFFS[s.difficulty].label+') · Length '+fmt(s.durationSec)+' · '+lf.talkShare+'% of words mine\n\n';
+  t+='MY PLAN\nOpening: '+(s.prep.open||'—')+'\nNews: '+(s.prep.facts||'—')+'\nNext step: '+(s.prep.next||'—')+'\n\nTRANSCRIPT\n'+transcriptText(s,true)+'\n\n';
+  if(s.feedback){t+='AI FEEDBACK ('+(s.feedback.model||'Gemini')+')\n'+(s.feedback.summary||'')+'\n';(s.feedback.criteria||[]).forEach(c=>{const r=RUBRIC.find(x=>x.id===c.id)||{name:c.id};t+='- '+r.name+': '+c.score+'/4. '+(c.comment||'')+(c.try?' Try: '+c.try:'')+'\n';});t+='\n';}
+  t+='SELF-RATING\n'+RUBRIC.map(r=>'- '+r.name+': '+(s.ratings[r.id]||'not rated')).join('\n')+'\n\nREFLECTION\n'+REFLECT.map(q=>q.q+'\n'+(s.reflections[q.id]||'(no response)')).join('\n\n');
+  return t+'\n\nGenerated with Parent Call Practice (Marc Watkins, University of Mississippi). AI role-play parent; AI-assisted build.';
+}
+function stem(s){return 'parent-call-'+slugify(s.name)+'-'+slugify(s.scenarioTitle).slice(0,30);}
+$('#dlHtml').addEventListener('click',()=>{const s=currentSession();if(!s)return;downloadBlob(buildReportHTML(s),'text/html',stem(s)+'.html');$('#exportStatus').textContent='Report downloaded.';});
+$('#dlPdf').addEventListener('click',()=>{const s=currentSession();if(!s)return;printReportWindow(buildReportHTML(s));});
+$('#copyTxt').addEventListener('click',()=>{const s=currentSession();if(!s)return;copyText(reportText(s),()=>$('#exportStatus').textContent='Copied to clipboard.',()=>$('#exportStatus').textContent='Copy failed. Use Download instead.');});
+$('#dlVtt').addEventListener('click',()=>{const s=currentSession();if(!s)return;downloadBlob(transcriptText(s,true),'text/plain',stem(s)+'-transcript.txt');$('#exportStatus').textContent='Transcript downloaded.';});
+$('#resetAll').addEventListener('click',()=>{if(confirm('Delete all your calls, plans, reflections, custom scenarios, and saved key from this browser? This cannot be undone.')){try{localStorage.removeItem(LS_KEY);localStorage.removeItem(KEY_KEY);}catch(e){}location.reload();}});
+
+/* ================= Boot ================= */
+if('speechSynthesis' in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{};}
+go('setup');
+})();
+</script>
+</body>
+</html>
