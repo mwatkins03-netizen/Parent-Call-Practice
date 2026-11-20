@@ -1,0 +1,472 @@
+{
+  "sources": {
+    "xlsx": "Sample Scenarios & Parent Types.xlsx (sheets: Scenarios A1:C36, Parent Types A1:B20)",
+    "scenariosDocx": "Sample Parent Scenarios.docx (one 35x3 table, no header row)",
+    "parentTypesDocx": "Parent Types.docx (one 20x2 table, header row Name/Description, blank spacer rows)"
+  },
+  "sourceFieldStructure": {
+    "scenarios": "Each scenario = number + title (xlsx header \"Name:\") + one text cell (xlsx header \"Scenarios:\") containing three labeled parts separated by blank lines: \"Situation:\", \"Parent Reaction:\", \"Teacher Goal:\". xlsx header for the number column is the Excel default \"Column1\".",
+    "parentTypes": "Each parent type = Name + Description only. No behaviors, sample lines, difficulty, or other fields."
+  },
+  "scenarios": [
+    {
+      "number": 1,
+      "title": "Transition to Middle School Anxiety",
+      "situation": "A student receiving special education services is anxious about transitioning to middle school.",
+      "parentReaction": "The parent worries the student will not receive adequate support in a larger school setting.",
+      "teacherGoal": "Reassure the parent by explaining transition supports and available resources.",
+      "sourceText": "Situation: A student receiving special education services is anxious about transitioning to middle school.\n\nParent Reaction: The parent worries the student will not receive adequate support in a larger school setting.\n\nTeacher Goal: Reassure the parent by explaining transition supports and available resources."
+    },
+    {
+      "number": 2,
+      "title": "Request for Additional Services",
+      "situation": "The student continues to struggle with reading despite intervention support.",
+      "parentReaction": "The parent requests additional special education services immediately.",
+      "teacherGoal": "Explain the data collection and evaluation process while validating the parent’s concerns.",
+      "sourceText": "Situation: The student continues to struggle with reading despite intervention support.\n\nParent Reaction: The parent requests additional special education services immediately.\n\nTeacher Goal: Explain the data collection and evaluation process while validating the parent’s concerns."
+    },
+    {
+      "number": 3,
+      "title": "Behavior Intervention Plan Concerns",
+      "situation": "A student with emotional and behavioral needs had a significant classroom outburst.",
+      "parentReaction": "The parent believes staff responses escalated the situation.",
+      "teacherGoal": "Review the behavior intervention strategies used and maintain a calm, collaborative tone.",
+      "sourceText": "Situation: A student with emotional and behavioral needs had a significant classroom outburst.\n\nParent Reaction: The parent believes staff responses escalated the situation.\n\nTeacher Goal: Review the behavior intervention strategies used and maintain a calm, collaborative tone."
+    },
+    {
+      "number": 4,
+      "title": "Frustration with Inclusion Placement",
+      "situation": "A student with learning disabilities is struggling academically in the general education classroom.",
+      "parentReaction": "The parent questions whether the current placement is appropriate and feels their child is overwhelmed.",
+      "teacherGoal": "Discuss supports currently in place and explain the collaborative process for reviewing student needs.",
+      "sourceText": "Situation: A student with learning disabilities is struggling academically in the general education classroom.\n\nParent Reaction: The parent questions whether the current placement is appropriate and feels their child is overwhelmed.\n\nTeacher Goal: Discuss supports currently in place and explain the collaborative process for reviewing student needs."
+    },
+    {
+      "number": 5,
+      "title": "Concerns about IEP Accommodations",
+      "situation": "A student with an IEP reports that they did not receive extended time on a classroom assessment.",
+      "parentReaction": "The parent is upset and concerned that accommodations are not being consistently implemented.",
+      "teacherGoal": "Acknowledge the concern professionally, clarify what occurred, and discuss steps for ensuring future compliance.",
+      "sourceText": "Situation: A student with an IEP reports that they did not receive extended time on a classroom assessment.\n\nParent Reaction: The parent is upset and concerned that accommodations are not being consistently implemented.\n\nTeacher Goal: Acknowledge the concern professionally, clarify what occurred, and discuss steps for ensuring future compliance."
+    },
+    {
+      "number": 6,
+      "title": "Emotional Parent During Crisis",
+      "situation": "The student recently experienced a family hardship and has shown behavioral changes.",
+      "parentReaction": "The parent becomes emotional and overwhelmed during the call.",
+      "teacherGoal": "Show empathy, maintain professionalism, and connect the family with school supports.",
+      "sourceText": "Situation: The student recently experienced a family hardship and has shown behavioral changes.\n\nParent Reaction: The parent becomes emotional and overwhelmed during the call.\n\nTeacher Goal: Show empathy, maintain professionalism, and connect the family with school supports."
+    },
+    {
+      "number": 7,
+      "title": "Divorced Parents with Different Expectations",
+      "situation": "One parent is highly supportive while the other is defensive about the student’s behavior.",
+      "parentReaction": "The parents disagree openly during a conference call.",
+      "teacherGoal": "Remain neutral and focused on student needs.",
+      "sourceText": "Situation: One parent is highly supportive while the other is defensive about the student’s behavior.\n\nParent Reaction: The parents disagree openly during a conference call.\n\nTeacher Goal: Remain neutral and focused on student needs."
+    },
+    {
+      "number": 8,
+      "title": "Language Barrier and Frustration",
+      "situation": "The teacher calls about missing assignments.",
+      "parentReaction": "The parent becomes frustrated due to communication difficulties and misunderstandings.",
+      "teacherGoal": "Use clear language, patience, and supportive communication strategies.",
+      "sourceText": "Situation: The teacher calls about missing assignments.\n\nParent Reaction: The parent becomes frustrated due to communication difficulties and misunderstandings.\n\nTeacher Goal: Use clear language, patience, and supportive communication strategies."
+    },
+    {
+      "number": 9,
+      "title": "Instructional Advice",
+      "situation": "The student struggles with reading comprehension.",
+      "parentReaction": "The parent suggests several instructional strategies the teacher “should try.”",
+      "teacherGoal": "Listen respectfully while maintaining professional boundaries.",
+      "sourceText": "Situation: The student struggles with reading comprehension.\n\nParent Reaction: The parent suggests several instructional strategies the teacher “should try.”\n\nTeacher Goal: Listen respectfully while maintaining professional boundaries."
+    },
+    {
+      "number": 10,
+      "title": "Assessment Feedback",
+      "situation": "The student performed poorly on a project rubric.",
+      "parentReaction": "The parent analyzes the rubric in detail and questions scoring decisions.",
+      "teacherGoal": "Clarify grading expectations objectively.",
+      "sourceText": "Situation: The student performed poorly on a project rubric.\n\nParent Reaction: The parent analyzes the rubric in detail and questions scoring decisions.\n\nTeacher Goal: Clarify grading expectations objectively."
+    },
+    {
+      "number": 11,
+      "title": "Brief Phone Call",
+      "situation": "The student’s grades have declined significantly.",
+      "parentReaction": "The parent repeatedly says they only have “one minute.”",
+      "teacherGoal": "Communicate the most important information concisely.",
+      "sourceText": "Situation: The student’s grades have declined significantly.\n\nParent Reaction: The parent repeatedly says they only have “one minute.”\n\nTeacher Goal: Communicate the most important information concisely."
+    },
+    {
+      "number": 12,
+      "title": "Incomplete Homework Support",
+      "situation": "The student reports no quiet place to complete homework.",
+      "parentReaction": "The parent says they are too busy to monitor homework.",
+      "teacherGoal": "Problem-solve realistic supports for the student.",
+      "sourceText": "Situation: The student reports no quiet place to complete homework.\n\nParent Reaction: The parent says they are too busy to monitor homework.\n\nTeacher Goal: Problem-solve realistic supports for the student."
+    },
+    {
+      "number": 13,
+      "title": "Behavior Concerns During Transitions",
+      "situation": "The student struggles during arrival and dismissal routines.",
+      "parentReaction": "The parent seems uninterested and gives short responses.",
+      "teacherGoal": "Encourage collaboration despite limited engagement.",
+      "sourceText": "Situation: The student struggles during arrival and dismissal routines.\n\nParent Reaction: The parent seems uninterested and gives short responses.\n\nTeacher Goal: Encourage collaboration despite limited engagement."
+    },
+    {
+      "number": 14,
+      "title": "Social Media Complaint",
+      "situation": "The parent posted concerns online about a classroom issue.",
+      "parentReaction": "The parent insists they were “just advocating” for their child.",
+      "teacherGoal": "Redirect concerns toward direct communication.",
+      "sourceText": "Situation: The parent posted concerns online about a classroom issue.\n\nParent Reaction: The parent insists they were “just advocating” for their child.\n\nTeacher Goal: Redirect concerns toward direct communication."
+    },
+    {
+      "number": 15,
+      "title": "Discipline Disagreement",
+      "situation": "The student received a lunch detention.",
+      "parentReaction": "The parent immediately escalated concerns to administration.",
+      "teacherGoal": "Explain the disciplinary process calmly.",
+      "sourceText": "Situation: The student received a lunch detention.\n\nParent Reaction: The parent immediately escalated concerns to administration.\n\nTeacher Goal: Explain the disciplinary process calmly."
+    },
+    {
+      "number": 16,
+      "title": "Rumor-Based Complaint",
+      "situation": "The parent heard from another family that the classroom is “chaotic.”",
+      "parentReaction": "The parent questions the teacher before gathering facts.",
+      "teacherGoal": "Provide accurate information and maintain professionalism.",
+      "sourceText": "Situation: The parent heard from another family that the classroom is “chaotic.”\n\nParent Reaction: The parent questions the teacher before gathering facts.\n\nTeacher Goal: Provide accurate information and maintain professionalism."
+    },
+    {
+      "number": 17,
+      "title": "Immediate Principal Contact",
+      "situation": "The parent contacted the principal before speaking with the teacher about a homework concern.",
+      "parentReaction": "The parent begins the call frustrated and accusatory.",
+      "teacherGoal": "Rebuild communication and clarify classroom expectations.",
+      "sourceText": "Situation: The parent contacted the principal before speaking with the teacher about a homework concern.\n\nParent Reaction: The parent begins the call frustrated and accusatory.\n\nTeacher Goal: Rebuild communication and clarify classroom expectations."
+    },
+    {
+      "number": 18,
+      "title": "Curriculum Objection",
+      "situation": "The parent objects to a novel used in class.",
+      "parentReaction": "The parent contacted the superintendent before discussing concerns with the teacher.",
+      "teacherGoal": "Explain instructional purpose and available alternatives.",
+      "sourceText": "Situation: The parent objects to a novel used in class.\n\nParent Reaction: The parent contacted the superintendent before discussing concerns with the teacher.\n\nTeacher Goal: Explain instructional purpose and available alternatives."
+    },
+    {
+      "number": 19,
+      "title": "Parent-Teacher Conference No-Shows",
+      "situation": "The parent has missed multiple scheduled conferences.",
+      "parentReaction": "The parent says they are too busy to attend meetings.",
+      "teacherGoal": "Offer flexible communication options.",
+      "sourceText": "Situation: The parent has missed multiple scheduled conferences.\n\nParent Reaction: The parent says they are too busy to attend meetings.\n\nTeacher Goal: Offer flexible communication options."
+    },
+    {
+      "number": 20,
+      "title": "Behavioral Referral",
+      "situation": "The student received repeated behavior referrals.",
+      "parentReaction": "The parent sounds rushed and distracted during the call.",
+      "teacherGoal": "Communicate clearly and efficiently while requesting partnership.",
+      "sourceText": "Situation: The student received repeated behavior referrals.\n\nParent Reaction: The parent sounds rushed and distracted during the call.\n\nTeacher Goal: Communicate clearly and efficiently while requesting partnership."
+    },
+    {
+      "number": 21,
+      "title": "Chronic Absenteeism",
+      "situation": "The student has missed many days of school.",
+      "parentReaction": "The parent provides vague explanations and appears disengaged.",
+      "teacherGoal": "Stress the academic impact of absences and offer resources.",
+      "sourceText": "Situation: The student has missed many days of school.\n\nParent Reaction: The parent provides vague explanations and appears disengaged.\n\nTeacher Goal: Stress the academic impact of absences and offer resources."
+    },
+    {
+      "number": 22,
+      "title": "B+ Report Card Concern",
+      "situation": "The student earned mostly B+ grades.",
+      "parentReaction": "The parent is deeply concerned and demands extra credit opportunities.",
+      "teacherGoal": "Discuss realistic expectations and student wellness.",
+      "sourceText": "Situation: The student earned mostly B+ grades.\n\nParent Reaction: The parent is deeply concerned and demands extra credit opportunities.\n\nTeacher Goal: Discuss realistic expectations and student wellness."
+    },
+    {
+      "number": 23,
+      "title": "Advanced Placement Request",
+      "situation": "The parent requests placement in advanced coursework.",
+      "parentReaction": "The parent pressures the teacher to recommend higher-level placement despite mixed performance data.",
+      "teacherGoal": "Share objective evidence professionally.",
+      "sourceText": "Situation: The parent requests placement in advanced coursework.\n\nParent Reaction: The parent pressures the teacher to recommend higher-level placement despite mixed performance data.\n\nTeacher Goal: Share objective evidence professionally."
+    },
+    {
+      "number": 24,
+      "title": "Overreaction to Test Scores",
+      "situation": "The student scored slightly below average on a benchmark assessment.",
+      "parentReaction": "The parent requests immediate tutoring and additional assignments.",
+      "teacherGoal": "Provide perspective on assessment data.",
+      "sourceText": "Situation: The student scored slightly below average on a benchmark assessment.\n\nParent Reaction: The parent requests immediate tutoring and additional assignments.\n\nTeacher Goal: Provide perspective on assessment data."
+    },
+    {
+      "number": 25,
+      "title": "Low Quiz Grade",
+      "situation": "The student failed a science quiz.",
+      "parentReaction": "The parent immediately criticizes the student harshly during the call.",
+      "teacherGoal": "Redirect toward constructive support strategies.",
+      "sourceText": "Situation: The student failed a science quiz.\n\nParent Reaction: The parent immediately criticizes the student harshly during the call.\n\nTeacher Goal: Redirect toward constructive support strategies."
+    },
+    {
+      "number": 26,
+      "title": "Behavioral Outburst",
+      "situation": "The student became frustrated and cried during class.",
+      "parentReaction": "The parent dismisses the student’s feelings and focuses only on punishment.",
+      "teacherGoal": "Encourage balanced support and emotional understanding.",
+      "sourceText": "Situation: The student became frustrated and cried during class.\n\nParent Reaction: The parent dismisses the student’s feelings and focuses only on punishment.\n\nTeacher Goal: Encourage balanced support and emotional understanding."
+    },
+    {
+      "number": 27,
+      "title": "Cheating Incident",
+      "situation": "The student copied another student’s assignment.",
+      "parentReaction": "The parent insists the teacher misunderstood the situation.",
+      "teacherGoal": "Present facts calmly and discuss next steps.",
+      "sourceText": "Situation: The student copied another student’s assignment.\n\nParent Reaction: The parent insists the teacher misunderstood the situation.\n\nTeacher Goal: Present facts calmly and discuss next steps."
+    },
+    {
+      "number": 28,
+      "title": "Excessive Tardiness",
+      "situation": "The student has arrived late multiple times.",
+      "parentReaction": "The parent blames school traffic patterns and teachers for marking tardies.",
+      "teacherGoal": "Emphasize the impact of tardiness on learning.",
+      "sourceText": "Situation: The student has arrived late multiple times.\n\nParent Reaction: The parent blames school traffic patterns and teachers for marking tardies.\n\nTeacher Goal: Emphasize the impact of tardiness on learning."
+    },
+    {
+      "number": 29,
+      "title": "Technology Misuse",
+      "situation": "The student used a school device inappropriately during class.",
+      "parentReaction": "The parent says the teacher should have monitored students more closely.",
+      "teacherGoal": "Reinforce shared responsibility for digital citizenship.",
+      "sourceText": "Situation: The student used a school device inappropriately during class.\n\nParent Reaction: The parent says the teacher should have monitored students more closely.\n\nTeacher Goal: Reinforce shared responsibility for digital citizenship."
+    },
+    {
+      "number": 30,
+      "title": "Grading Policy Challenge",
+      "situation": "The student lost points for incomplete work.",
+      "parentReaction": "The parent argues that the grading policy is inequitable.",
+      "teacherGoal": "Clearly explain classroom expectations and grading procedures.",
+      "sourceText": "Situation: The student lost points for incomplete work.\n\nParent Reaction: The parent argues that the grading policy is inequitable.\n\nTeacher Goal: Clearly explain classroom expectations and grading procedures."
+    },
+    {
+      "number": 31,
+      "title": "Classroom Management Complaint",
+      "situation": "The student reported that another classmate disrupted learning.",
+      "parentReaction": "The parent questions the teacher’s classroom management skills.",
+      "teacherGoal": "Explain classroom systems without becoming defensive.",
+      "sourceText": "Situation: The student reported that another classmate disrupted learning.\n\nParent Reaction: The parent questions the teacher’s classroom management skills.\n\nTeacher Goal: Explain classroom systems without becoming defensive."
+    },
+    {
+      "number": 32,
+      "title": "Minor Illness at School",
+      "situation": "The student visited the nurse complaining of a headache.",
+      "parentReaction": "The parent questions why they were not notified immediately.",
+      "teacherGoal": "Clarify school communication protocols respectfully.",
+      "sourceText": "Situation: The student visited the nurse complaining of a headache.\n\nParent Reaction: The parent questions why they were not notified immediately.\n\nTeacher Goal: Clarify school communication protocols respectfully."
+    },
+    {
+      "number": 33,
+      "title": "Playground Conflict",
+      "situation": "The student had a disagreement with another child during recess.",
+      "parentReaction": "The parent immediately wants names of the other students involved and asks for disciplinary details.",
+      "teacherGoal": "Maintain confidentiality while explaining school procedures.",
+      "sourceText": "Situation: The student had a disagreement with another child during recess.\n\nParent Reaction: The parent immediately wants names of the other students involved and asks for disciplinary details.\n\nTeacher Goal: Maintain confidentiality while explaining school procedures."
+    },
+    {
+      "number": 34,
+      "title": "Group Project Concerns",
+      "situation": "The student earned a lower grade on a group assignment.",
+      "parentReaction": "The parent insists their child carried the entire project and requests individual grading adjustments.",
+      "teacherGoal": "Explain grading criteria professionally and calmly.",
+      "sourceText": "Situation: The student earned a lower grade on a group assignment.\n\nParent Reaction: The parent insists their child carried the entire project and requests individual grading adjustments.\n\nTeacher Goal: Explain grading criteria professionally and calmly."
+    },
+    {
+      "number": 35,
+      "title": "Missing Homework and Organization",
+      "situation": "A student has missed three homework assignments in one week.",
+      "parentReaction": "The parent is appreciative of the call and wants to collaborate on strategies.",
+      "teacherGoal": "Develop a shared plan for helping the student stay organized.",
+      "sourceText": "Situation: A student has missed three homework assignments in one week.\n\nParent Reaction: The parent is appreciative of the call and wants to collaborate on strategies.\n\nTeacher Goal: Develop a shared plan for helping the student stay organized."
+    }
+  ],
+  "parentTypes": [
+    {
+      "name": "The Ally",
+      "description": "They view the teacher as a partner. They value communication, support classroom rules, and foster resilience when their child faces academic hurdles."
+    },
+    {
+      "name": "The Helicopter Parent",
+      "description": "Ever-present and highly protective, they hover over every detail of their child's day. They often struggle to let the child manage tasks or make age-appropriate mistakes."
+    },
+    {
+      "name": "The \"Know More Than You\" Parent",
+      "description": "Highly intelligent and opinionated, they regularly challenge test questions or instructional methods and may correct formatting errors in your emails."
+    },
+    {
+      "name": "The \"It's Never My Child's Fault\" Parent",
+      "description": "Highly defensive, they quickly absolve their child of blame. If a grade is poor or a rule is broken, they will attribute the blame to the teacher or peers."
+    },
+    {
+      "name": "The \"It's Always My Child's Fault\" Parent",
+      "description": "At the opposite end of the spectrum, they are overly critical of their child. They assume wrongdoing on their child's part before hearing the full story."
+    },
+    {
+      "name": "The Tiger Parent",
+      "description": "Strict and demanding, they expect perfection. They push their children relentlessly to achieve top marks and excel in extracurriculars, creating high-pressure environments."
+    },
+    {
+      "name": "The Ghost Parent",
+      "description": "MIA (Missing in Action). They rarely attend parent-teacher meetings, fail to respond to messages, and only surface if a massive behavioral or academic crisis occurs."
+    },
+    {
+      "name": "The Overhead Parent",
+      "description": "They jump to conclusions and have a problem with something in the classroom, but skip communicating directly with the teacher—going straight to the principal or superintendent instead."
+    },
+    {
+      "name": "The Hurried/Indifferent Parent",
+      "description": "Unenthusiastic about school events, they view parent-teacher meetings as a chore. They make minimal appearances and show low overall communication."
+    },
+    {
+      "name": "The Fellow Educator Parent",
+      "description": "They have friends in education, are former governors, or were once educators themselves. They often offer unsolicited advice on pedagogy and frequently reference out-of-date teaching philosophies."
+    }
+  ],
+  "scenarioParentTypeMapping": null,
+  "scenarioParentTypeMappingNote": "None of the three sources links scenarios to parent types. See extractorSuggestedMapping for an inference (NOT from the sources).",
+  "extractorSuggestedMapping": {
+    "note": "Extractor inference only, based on matching each scenario's Parent Reaction to a parent-type description. Not instructor wording. Empty list = no clear match.",
+    "byScenarioNumber": {
+      "1": [
+        "The Helicopter Parent"
+      ],
+      "2": [
+        "The Helicopter Parent",
+        "The \"Know More Than You\" Parent"
+      ],
+      "3": [
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "4": [
+        "The Helicopter Parent"
+      ],
+      "5": [
+        "The Helicopter Parent"
+      ],
+      "6": [],
+      "7": [
+        "The Ally",
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "8": [],
+      "9": [
+        "The Fellow Educator Parent"
+      ],
+      "10": [
+        "The \"Know More Than You\" Parent"
+      ],
+      "11": [
+        "The Hurried/Indifferent Parent"
+      ],
+      "12": [
+        "The Hurried/Indifferent Parent"
+      ],
+      "13": [
+        "The Hurried/Indifferent Parent"
+      ],
+      "14": [
+        "The Overhead Parent"
+      ],
+      "15": [
+        "The Overhead Parent"
+      ],
+      "16": [
+        "The Overhead Parent"
+      ],
+      "17": [
+        "The Overhead Parent"
+      ],
+      "18": [
+        "The Overhead Parent"
+      ],
+      "19": [
+        "The Ghost Parent"
+      ],
+      "20": [
+        "The Hurried/Indifferent Parent"
+      ],
+      "21": [
+        "The Ghost Parent"
+      ],
+      "22": [
+        "The Tiger Parent"
+      ],
+      "23": [
+        "The Tiger Parent"
+      ],
+      "24": [
+        "The Tiger Parent",
+        "The Helicopter Parent"
+      ],
+      "25": [
+        "The \"It's Always My Child's Fault\" Parent"
+      ],
+      "26": [
+        "The \"It's Always My Child's Fault\" Parent"
+      ],
+      "27": [
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "28": [
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "29": [
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "30": [
+        "The \"Know More Than You\" Parent",
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "31": [
+        "The \"Know More Than You\" Parent",
+        "The \"It's Never My Child's Fault\" Parent"
+      ],
+      "32": [
+        "The Helicopter Parent"
+      ],
+      "33": [
+        "The Helicopter Parent"
+      ],
+      "34": [
+        "The \"It's Never My Child's Fault\" Parent",
+        "The Tiger Parent"
+      ],
+      "35": [
+        "The Ally"
+      ]
+    }
+  },
+  "otherMaterial": {
+    "instructions": null,
+    "rubrics": null,
+    "difficultyLevels": null,
+    "learningObjectives": null,
+    "notesToStudents": null,
+    "note": "The sources contain no instructions, rubrics, difficulty levels, learning objectives, grade levels, student names/ages, call-length guidance, or notes to students. The only goal-like material is each scenario's \"Teacher Goal\" line."
+  },
+  "sourceDiscrepancies": [
+    {
+      "where": "Parent Types, The Fellow Educator Parent description",
+      "xlsx": " They have friends in education, are former governors, or were once educators themselves. They often offer unsolicited advice on pedagogy and frequently reference out-of-date teaching philosophies.",
+      "docx": "They have friends in education, are former governors, or were once educators themselves. They often offer unsolicited advice on pedagogy and frequently reference out-of-date teaching philosophies.",
+      "difference": "xlsx cell has a leading space; otherwise identical."
+    },
+    {
+      "where": "Scenario 35 title",
+      "originalSourceTitle": "Test Anxiety",
+      "changedTo": "Missing Homework and Organization",
+      "date": "2026-11-20",
+      "reason": "Changed at the instructor's request because the scenario text is about missed homework, not test anxiety. Situation, Parent Reaction, and Teacher Goal are unchanged."
+    }
+  ]
+}
